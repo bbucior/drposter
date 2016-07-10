@@ -1,0 +1,4 @@
+name: drposter Poster
+description: >
+  Template for poster based on 'reveal.js' presentations
+create_dir: false

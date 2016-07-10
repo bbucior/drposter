@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html$if(lang)$ lang="$lang$"$endif$>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+$for(author-meta)$
+  <meta name="author" content="$author-meta$" />
+$endfor$
+$if(date-meta)$
+  <meta name="dcterms.date" content="$date-meta$" />
+$endif$
+  <title>$if(title-prefix)$$title-prefix$ - $endif$$pagetitle$</title>
+    <style type="text/css">code{white-space: pre;}</style>
+$if(highlighting-css)$
+    <style type="text/css">
+$highlighting-css$
+    </style>
+$endif$
+$if(css)$
+$for(css)$
+    <link rel="stylesheet" href="$css$"/>
+$endfor$
+$else$
+    <link rel="stylesheet" href="poster.css" id="theme">
+$endif$
+  <!--[if lt IE 9]>
+  <script src="$revealjs-url$/lib/js/html5shiv.js"></script>
+  <![endif]-->
+$if(math)$
+    $math$
+$endif$
+$for(header-includes)$
+    $header-includes$
+$endfor$
+</head>
+<body>
+$for(include-before)$
+$include-before$
+$endfor$
+  <div class="reveal">
+    <div class="slides">
+
+$if(title)$
+<section>
+    <h1 class="title">$title$</h1>
+$if(subtitle)$
+  <h1 class="subtitle">$subtitle$</h1>
+$endif$
+$for(author)$
+    <h2 class="author">$author$</h2>
+$endfor$
+$if(date)$
+    <h3 class="date">$date$</h3>
+$endif$
+</section>
+$endif$
+
+$body$
+    </div>
+  </div>
+$for(include-after)$
+$include-after$
+$endfor$
+
+  </body>
+</html>

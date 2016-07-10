@@ -1,0 +1,6 @@
+.Rproj.user
+.Rhistory
+.RData
+# Don't track intermediate steps in generating documentation
+inst/example/poster.html
+inst/example/poster_files/
