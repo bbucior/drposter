@@ -7,6 +7,8 @@ output:
     css: poster.css
 ---
 
+# {.col-1}
+
 ## R Markdown
 
 This is an R Markdown poster based on 'reveal.js' presentations. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
@@ -19,6 +21,8 @@ When you click the **Knit** button a document will be generated that includes bo
 - Bullet 2
 - Bullet 3
 
+# {.col-2}
+
 ## Slide with R Code and Output
 
 ```{r}
@@ -30,4 +34,10 @@ summary(cars)
 ```{r, echo=FALSE}
 plot(cars)
 ```
+
+# {.col-1}
+
+## Conclusions
+
+Take a look around the project example for a tour of useful column classes, etc.
 

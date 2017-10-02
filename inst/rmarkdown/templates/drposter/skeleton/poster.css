@@ -36,7 +36,7 @@ html {
 	line-height: 1.375; /* Use proportional line spacing so everything is self-consistent */
 }
 
-h1 {
+h1, h2:not(.author) {
 	font-family: 'Monda', sans-serif;
 }
 
@@ -146,7 +146,7 @@ caption {
 	padding: 0 1cm;  /* Simply adjust left-right document margins for the main content */
 }
 
-.reveal .slides section h1:not(.title) {
+.reveal .slides .slide h2 {
 	width: 100%;
 	height: 2em;
 	line-height: calc(2em - 1cm); /* Subtract off padding from border-box */
