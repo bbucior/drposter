@@ -249,3 +249,11 @@ sup, sub, .cite {
 sub { 
   top: 0.4em; 
 }
+
+.references p {
+	margin: 0;
+}
+
+.references {
+	margin: 1em 0;
+}
