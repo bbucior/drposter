@@ -149,7 +149,7 @@ caption {
 	height: inherit;
 }
 
-.reveal .slides > section:not(:first-child) {
+.reveal .slides > .section:not(:first-child) {
 	display: flex;
 	/*flex-flow: row wrap;*/
 	flex-flow: column; /* TODO: figure out how to change this back for automatically filling .by-row-X, with similar notation as the columns */
@@ -161,7 +161,7 @@ caption {
 /*	grid-column: span 4;*/  /* This was used in my old layout to get the 3-column setting, but it overrides all of the actual column specs */
 }
 
-.reveal .slides .slide h2 {
+.reveal .slides .level2 h2 {
 	width: 100%;
 	height: 2em;
 	line-height: calc(2em - 1cm); /* Subtract off padding from border-box */
@@ -174,7 +174,7 @@ caption {
 	margin: -1em auto 0 auto;
 }
 
-.reveal .slides section .level2 { 
+.reveal .slides .level2 { 
 	border-radius: 1cm;
 	padding: 0 1cm;
 	box-sizing: border-box;
@@ -189,6 +189,15 @@ caption {
 	flex-flow: row wrap;
 	justify-content: space-between;  /* space between columns */
 	align-content: flex-start;
+	/* New idea to get the bottom looking nice and throughout */
+	/* FIXME: figure out how this works with the other settings, and simplify the CSS */
+	/* Not sure, but this likely adds the same amount of flex to each container, which could look strange in some circumstances */
+	flex-grow: 1;
+}
+
+.level1 h1 {
+	/* Pseudo elements for pandoc div's */
+	display: none;
 }
 
 p, pre {
@@ -212,24 +221,25 @@ pre {
 }
 
 /* FIXME: these .col-x classes don't work yet.  The current poster is handled via the rule for .reveal .slides > section:not(:first-child) */
-.reveal .slides .col-1 ~ .level2 {
+/* Need to do some cleanup to ensure we know exactly what is controlling what, in the new design */
+.reveal .slides .col-1 {
 	grid-column: span 12;
 	/*width: 98%;*/
 }
 
-.reveal .slides .col-2 ~ .level2 {
+.reveal .slides .col-2 {
 	grid-column: span 6;
 	/*width: 48%;*/
 	/* Long-term: should make the intercolumn spacing customizable, too, maybe with CSS variables? */
 	/* Might also consider doing this with flex:1, or similar code, to allow uneven rows, etc. */
 }
 
-.reveal .slides .col-3 ~ .level2 {
+.reveal .slides .col-3 {
 	grid-column: span 4;
 	/*width: 31%;*/
 }
 
-.reveal .slides .col-4 ~ .level2 {
+.reveal .slides .col-4 {
 	grid-column: span 3;
 }
 

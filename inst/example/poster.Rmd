@@ -2,8 +2,7 @@
 title: "drposter: Generate Academic Posters in R Markdown Based on 'reveal.js' Presentations"
 author: ["<span class=\"presenter\">Ben Bucior<sup>1</sup></span>, &lt;Your name here&gt;<sup>2</sup><ol class=\"affiliations\"><li>Northwestern University, Evanston, IL, USA</li><li>Earth</li></ol>"]
 output:
-  drposter::revealjs_poster:
-    slide_level: 2
+  drposter::revealjs_poster
 csl: american-chemical-society.csl
 references:
 - id: revealjs
@@ -43,6 +42,9 @@ knitr::opts_chunk$set(echo = FALSE)  # Hide code by default. Can override chunk-
 ```
 
 # {.col-1}
+
+<!-- TODO: Tons of cleanup in this document and throughout, to get a nice and clean html layout.  See also mentions of reveal.js, including the function names and R/README documentation -->
+
 <!--<div class="col-1">-->
 <!-- Not sure if I should use a div, or the single hash section header
 The challenge is that the section doesn't inherit the class of the child.
@@ -78,7 +80,16 @@ Currently, there are a few conventions to define the poster layout.  Use level 1
 
 The bibliography is now implemented using the pandoc features suggested by the relevant R markdown documentation[@rstudio-bib].  A "references" div is required to place the references at a custom location before the end of the document[@stackoverflow-refs]: see this example document for implementation.  See also CSL resources[@csl-github] to automatically format references according to your field's conventions, using references specified in the Rmarkdown YAML header or bibtex.
 
-<!-- # {.col-2} -->
+## Possible future directions
+
+* Integration with default reveal.js themes (e.g. sky, moon) to automatically load fonts, colors, and other styles.
+* Ideally, this could eventually be transformed into a "print as poster" extension for reveal.js slideshows, so the standard pandoc[@pandoc] template for revealjs could be used (including the default CSS and Javascript boilerplate that is currently removed).
+* Implement several nice base poster styles similar to the tikzposter LaTeX class[@tikzposter], which provides full customization of the color palette, block styling, etc.
+* Organize styles with SCSS or at least more similarly to standard reveal.js presentations.
+* Affiliations: the author list is currently cobbled together and could use an alternative to the _ad hoc_ construction.  Possibly pandoc's footnote syntax could help?
+* Add a more traditional column-based format for academic posters.
+
+# {.col-2}
 
 ## Reproducible research
 
@@ -98,19 +109,6 @@ Images can also be loaded by file path using the standard Markdown syntax.  For 
 
 ![](Resources/Rlogo.svg)
 
-# {.col-2}
-
-## Possible future directions
-
-* Integration with default reveal.js themes (e.g. sky, moon) to automatically load fonts, colors, and other styles.
-* Ideally, this could eventually be transformed into a "print as poster" extension for reveal.js slideshows, so the standard pandoc[@pandoc] template for revealjs could be used (including the default CSS and Javascript boilerplate that is currently removed).
-* Implement several nice base poster styles similar to the tikzposter LaTeX class[@tikzposter], which provides full customization of the color palette, block styling, etc.
-* Organize styles with SCSS or at least more similarly to standard reveal.js presentations.
-* Affiliations: the author list is currently cobbled together and could use an alternative to the _ad hoc_ construction.  Possibly pandoc's footnote syntax could help?
-* Add a more traditional column-based format for academic posters.
-
-<!-- # {.col-2} -->
-
 ## Community
 
 <div class="autofullwidth warning">
@@ -125,12 +123,15 @@ For more information, please visit the project page at <https://github.com/bbuci
 </p>
 
 
-# {.col-1}
+# {style="grid-column: span 9"}
 
-## References {style="grid-column: span 9"}
+<!-- old idea, which has been temporarily added to the CSS ## References {style="flex-grow: 1"} -->
+## References
 <div id="refs" class="references"></div>
 
-## Acknowledgements {style="grid-column: span 3"}
+# {style="grid-column: span 3"}
+
+## Acknowledgements
 
 The background image for the example poster is derived from public domain work.[@circuit]  The R logo[@logo] is copyright 2016 The R Foundation and dual-licensed as CC-BY-SA 4.0 or GPL-2.
 This package is derived from the excellent reveal.js HTML presentation framework[@revealjs] and corresponding R package.[@rstudio-reveal]

@@ -2,7 +2,7 @@
 #'
 #' Format for converting R Markdown reveal.js presentations to HTML/CSS posters.
 #'
-#' @inheritParams revealjs::revealjs_presentation
+#' @inheritParams rmarkdown::html_document
 #'
 #' @param self_contained Whether or not the poster should be packaged into a
 #'   a single self-contained file. Set to \code{FALSE} by default to save build time.
@@ -51,7 +51,7 @@ revealjs_poster <- function(self_contained = FALSE,
                             css = "poster.css",
                             theme = NULL,
                             ...) {
-  # Extend the revealjs package with the template modified from pandoc
+  # Generate a new output format using a template modified from pandoc
   # With help from http://rmarkdown.rstudio.com/developer_custom_formats.html
   if (identical(template, "poster")) {
     template_file <- system.file(
@@ -62,9 +62,13 @@ revealjs_poster <- function(self_contained = FALSE,
     template_file <- template
   }
 
-  revealjs::revealjs_presentation(template = template_file,
-                                  self_contained = self_contained,
-                                  css = css,
-                                  theme = NULL,  # themes not supported now but may be added later
-                                  ...)
+  # The rstudio documentation is quite good: https://rmarkdown.rstudio.com/html_document_format.html
+  rmarkdown::html_document(
+    template = template_file,
+    self_contained = self_contained,
+    css = css,
+    section_divs = TRUE,  # Set up the nesting div structure for the poster
+    theme = NULL,  # themes not supported now but may be added later
+    ...
+    )
 }
