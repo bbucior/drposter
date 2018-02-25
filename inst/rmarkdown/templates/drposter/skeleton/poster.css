@@ -75,6 +75,7 @@ caption {
 
 /* Poster title/header */
 .reveal .slides > section:first-child {
+	grid-column: span 12;  /* full width of the poster */
 	text-align: center;
 	/*background: lightgray;
 	background: linear-gradient(to right, lightgray, white);
@@ -134,9 +135,13 @@ caption {
 }
 
 .reveal .slides {
-	display: flex;
-	flex-direction: column;
-	height: inherit;
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-column-gap: 0.5in;  /* gap between columns */
+	/* TODO: Consider applying the grid equivalent of spacing-between to rows */
+	/* Let's set up the grid to be similar to bootstrap, where there are 12 equal columns which are combined via .col-x classes, e.g. .col-6 for half of the width */
+	/* See https://css-tricks.com/things-ive-learned-css-grid-layout/ and https://hacks.mozilla.org/2017/04/replace-bootstrap-layouts-with-css-grid/ for inspiration */
+	/* See also https://css-tricks.com/snippets/css/complete-guide-grid/ and https://gridbyexample.com/examples/ for general help */
 }
 
 .reveal {
@@ -146,12 +151,14 @@ caption {
 
 .reveal .slides > section:not(:first-child) {
 	display: flex;
-	/* flex-flow: column wrap; */
-	flex-flow: row wrap;  /* Need to figure out multi-column later, but my poster used rows */
+	/*flex-flow: row wrap;*/
+	flex-flow: column; /* TODO: figure out how to change this back for automatically filling .by-row-X, with similar notation as the columns */
 	justify-content: space-between;
 	flex: 1 1 auto;
 	/* TODO: reimport padding? */
 	/*padding: 0 1cm;*/  /* Simply adjust left-right document margins for the main content */
+	/* FIXME: temporary since the .col-1 h1 classes are failing (not setting the parent section, but rather the child).  I should figure out if there's an alternative that reaches the parent grid.  Maybe subgrid?  Another keyword or flexbox thing I'm missing? */
+/*	grid-column: span 4;*/  /* This was used in my old layout to get the 3-column setting, but it overrides all of the actual column specs */
 }
 
 .reveal .slides .slide h2 {
@@ -204,18 +211,26 @@ pre {
 	font-size: 60%; /* This will likely need to be adjusted */
 }
 
+/* FIXME: these .col-x classes don't work yet.  The current poster is handled via the rule for .reveal .slides > section:not(:first-child) */
 .reveal .slides .col-1 ~ .level2 {
-	width: 98%;
+	grid-column: span 12;
+	/*width: 98%;*/
 }
 
 .reveal .slides .col-2 ~ .level2 {
-	width: 48%;
+	grid-column: span 6;
+	/*width: 48%;*/
 	/* Long-term: should make the intercolumn spacing customizable, too, maybe with CSS variables? */
 	/* Might also consider doing this with flex:1, or similar code, to allow uneven rows, etc. */
 }
 
 .reveal .slides .col-3 ~ .level2 {
-	width: 31%;
+	grid-column: span 4;
+	/*width: 31%;*/
+}
+
+.reveal .slides .col-4 ~ .level2 {
+	grid-column: span 3;
 }
 
 img {
