@@ -189,9 +189,10 @@ caption {
 	flex-flow: row wrap;
 	justify-content: space-between;  /* space between columns */
 	align-content: flex-start;
-	/* New idea to get the bottom looking nice and throughout */
-	/* FIXME: figure out how this works with the other settings, and simplify the CSS */
-	/* Not sure, but this likely adds the same amount of flex to each container, which could look strange in some circumstances */
+}
+
+.reveal .slides .level2:only-of-type {
+	/* If there is only one block, stretch it, because there are no adjacent elements for space-between */
 	flex-grow: 1;
 }
 

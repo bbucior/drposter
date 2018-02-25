@@ -125,7 +125,6 @@ For more information, please visit the project page at <https://github.com/bbuci
 
 # {style="grid-column: span 9"}
 
-<!-- old idea, which has been temporarily added to the CSS ## References {style="flex-grow: 1"} -->
 ## References
 <div id="refs" class="references"></div>
 
