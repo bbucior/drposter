@@ -34,6 +34,17 @@ html {
 	font-family: 'Roboto', sans-serif;
 	font-size: 1cm;
 	line-height: 1.375; /* Use proportional line spacing so everything is self-consistent */
+	/* Also set up the background.  Eventually this will be a separate color/gradient section */
+	background-color: #395831;
+	background: url("Resources/rotated-circuit-board.svg");
+	background-repeat: no-repeat;
+	/* Override circuit board style with a gradient */
+	background-size: cover;
+	background: white;
+	background: linear-gradient(to bottom, #eee9ee, white);  /* Make the poster more cheery than plain gray by incorporating a hint of the purple font color */
+	/* Can set overall document "margins" here */
+	padding: 1.5cm;
+	/* See also https://css-tricks.com/html-vs-body-in-css/ meaning that rem is set relative to the html root font size */
 }
 
 h1, h2:not(.author) {
@@ -65,13 +76,14 @@ caption {
 /* Poster title/header */
 .reveal .slides > section:first-child {
 	text-align: center;
-	background: lightgray;
+	/*background: lightgray;
 	background: linear-gradient(to right, lightgray, white);
-	opacity: 0.9; /* but also assigns the alpha to content */
+	background: linear-gradient(to bottom, lightgray, white);*/
+	/*opacity: 0.9;*/ /* but also assigns the alpha to content */
 	width: 100%;
 	box-sizing: border-box;
 	padding: 0 1%;
-	box-shadow: 0 10px black;
+	/* box-shadow: 0 10px black; */ /* NEW: consider merging with the rest of the poster more elegantly like this */
 }
 
 .reveal .slides > section:first-child ol.affiliations {
@@ -82,7 +94,7 @@ caption {
 }
 
 .reveal .slides > section:first-child ol.affiliations li:before {
-	content: counter(institution-counter);
+	content: counter(institution-counter);  /* Comment out this line if there is only one institution */
 	counter-increment: institution-counter;
 	/* Superscripting copied from .cite at bottom */
 	vertical-align: baseline;
@@ -124,12 +136,7 @@ caption {
 .reveal .slides {
 	display: flex;
 	flex-direction: column;
-	background-color: #395831;
-	background: url("Resources/rotated-circuit-board.svg");
-	background-repeat: no-repeat;
-	background-size: cover;
 	height: inherit;
-	/* padding: 1cm; */ /* Can set overall document "margins" here */
 }
 
 .reveal {
@@ -143,7 +150,8 @@ caption {
 	flex-flow: row wrap;  /* Need to figure out multi-column later, but my poster used rows */
 	justify-content: space-between;
 	flex: 1 1 auto;
-	padding: 0 1cm;  /* Simply adjust left-right document margins for the main content */
+	/* TODO: reimport padding? */
+	/*padding: 0 1cm;*/  /* Simply adjust left-right document margins for the main content */
 }
 
 .reveal .slides .slide h2 {
@@ -167,9 +175,9 @@ caption {
 	margin-top: 2cm;
 	/* Chrome is not handling the background opacity correctly when printing: https://bugs.chromium.org/p/chromium/issues/detail?id=226137 */
 	/* background-color: rgba(255, 255, 255, 0.9); */
-	background-color: rgb(224, 222, 222);
-	border: 0.2cm solid purple;
-	box-shadow: 5px 5px 5px black;
+	/* background-color: rgb(224, 222, 222); */ /* NEW: consider if we want to blend with background */
+	border: 0.2cm solid #400040;
+	/* box-shadow: 5px 5px 5px black; */ /* NEW: remove for clarity? */
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;  /* space between columns */
@@ -180,6 +188,15 @@ p, pre {
 	flex: 45%;
 	padding: 0 0.3em;
 	box-sizing: border-box;
+}
+
+h3 {
+	flex: 100%;
+	font-family: 'Monda', sans-serif;
+	color: #400040;
+	font-size: 1.3em;
+	margin: 0; /* FIXME */
+	/* automatic margins were too large, and margins from p, etc., take care of it nicely.  This results because flexbox does not collapse margins, unlike block-level formatting  */
 }
 
 pre {
@@ -256,4 +273,5 @@ sub {
 
 .references {
 	margin: 1em 0;
+	font-size: 0.8em;
 }
