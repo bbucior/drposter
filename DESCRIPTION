@@ -1,14 +1,15 @@
 Package: drposter
 Title: Generate Academic Posters in R Markdown based on 'reveal.js'
-Version: 0.0.0.9001
+Version: 0.0.0.9003
 Authors@R: person("Ben", "Bucior", email = "bbucior@u.northwestern.edu", role = c("aut", "cre"))
 Description: R Markdown format to generate reproducible posters,
     derived from 'reveal.js' presentations.
 Depends:
     R (>= 3.3.0)
 License: GPL-3 | file LICENSE
+URL: https://github.com/bbucior/drposter
 Encoding: UTF-8
 LazyData: true
 Imports:
-    revealjs (>= 0.6)
+    revealjs (>= 0.9)
 RoxygenNote: 5.0.1
