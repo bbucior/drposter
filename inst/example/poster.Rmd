@@ -2,7 +2,8 @@
 title: "drposter: Generate Academic Posters in R Markdown Based on 'reveal.js' Presentations"
 author: ["<span class=\"presenter\">Ben Bucior<sup>1</sup></span>, &lt;Your name here&gt;<sup>2</sup><ol class=\"affiliations\"><li>Northwestern University, Evanston, IL, USA</li><li>Earth</li></ol>"]
 output:
-  drposter::revealjs_poster
+  drposter::revealjs_poster:
+    fill_page: TRUE
 csl: american-chemical-society.csl
 references:
 - id: revealjs

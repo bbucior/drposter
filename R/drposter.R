@@ -9,7 +9,11 @@
 #' @param css One or more CSS files defining the poster styling. Some base
 #'   styles in poster.css are copied by default into the current directory and
 #'   automatically linked in the generated HTML unless this parameter is defined.
+#' @param pandoc_args Additional command line options to pass to pandoc
 #' @param theme Currently unused.
+#' @param fill_page Can optionally stretch the page content (by distributing
+#'   whitespace between blocks) to span the entire height assigned to the poster.
+#'   By default this is set to \code{FALSE}, which places content without extra spacing.
 #' @param template Pandoc template to use for rendering. Pass "poster" to use
 #'   the modified reveal.js poster template built into this package; pass
 #'   \code{NULL} to use pandoc's built-in template for reveal.js; pass a path
@@ -17,7 +21,7 @@
 #'   the default "poster" template then the reveal.js presentation javascript
 #'   will load and transform your poster into a presentation with inconsistent
 #'   styling.
-#' @param ... Additional parameters to pass to revealjs; otherwise ignored.
+#' @param ... Additional parameters to pass to html_document; otherwise ignored.
 #'
 #' @return R Markdown output format to pass to \code{\link[rmarkdown]{render}}
 #'
@@ -49,7 +53,9 @@
 revealjs_poster <- function(self_contained = FALSE,
                             template = "poster",
                             css = "poster.css",
+                            pandoc_args = NULL,
                             theme = NULL,
+                            fill_page = FALSE,
                             ...) {
   # Generate a new output format using a template modified from pandoc
   # With help from http://rmarkdown.rstudio.com/developer_custom_formats.html
@@ -62,12 +68,24 @@ revealjs_poster <- function(self_contained = FALSE,
     template_file <- template
   }
 
+  args <- c()
+  if (!is.null(fill_page)) {
+    if (!fill_page) {
+      fill_page = ""  # pandoc uses a different boolean notation (empty strings) than R
+    }
+    args <- c(args, "--variable", paste0("fill_page=", fill_page))
+  }
+  if (!is.null(pandoc_args)) {
+    args <- c(args, pandoc_args)
+  }
+
   # The rstudio documentation is quite good: https://rmarkdown.rstudio.com/html_document_format.html
   rmarkdown::html_document(
     template = template_file,
     self_contained = self_contained,
     css = css,
-    section_divs = TRUE,  # Set up the nesting div structure for the poster
+    pandoc_args = args,
+    section_divs = TRUE,  # Set up the nested div structure for the poster
     theme = NULL,  # themes not supported now but may be added later
     ...
     )

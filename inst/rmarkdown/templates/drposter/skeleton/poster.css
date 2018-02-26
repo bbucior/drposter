@@ -138,10 +138,15 @@ caption {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	grid-column-gap: 0.5in;  /* gap between columns */
-	/* TODO: Consider applying the grid equivalent of spacing-between to rows */
 	/* Let's set up the grid to be similar to bootstrap, where there are 12 equal columns which are combined via .col-x classes, e.g. .col-6 for half of the width */
 	/* See https://css-tricks.com/things-ive-learned-css-grid-layout/ and https://hacks.mozilla.org/2017/04/replace-bootstrap-layouts-with-css-grid/ for inspiration */
 	/* See also https://css-tricks.com/snippets/css/complete-guide-grid/ and https://gridbyexample.com/examples/ for general help */
+}
+
+.reveal .slides.fill_page {
+	/* Space the content to fill the entire poster, if the fill_page variable is set */
+	align-content: space-between;
+	height: inherit;  /* Through a series of steps, height eventually inherits from the html page size */
 }
 
 .reveal {
