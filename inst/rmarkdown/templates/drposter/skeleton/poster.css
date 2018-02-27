@@ -13,6 +13,7 @@ html {
 	margin: 0;
 	width: 841mm;
 	height: 1189mm;
+	padding: 1.5cm;  /* Overall document "margins" (while keeping the background, etc.) */
 }
 
 @media screen {
@@ -28,23 +29,19 @@ body {
 	-webkit-print-color-adjust: exact;  /* Enable background printing in Chrome: http://stackoverflow.com/questions/3893986/css-media-print-issues-with-background-color */
 }
 
+.reveal {
+	/* Should probably check how reveal.js handles the div's autoshrinking.  Maybe just set the smallest one? */
+	height: inherit;
+}
+
+
 
 /* Font-sizes.  These could also be set proportionally to the base html size */
 html {
+	/* Note that rem is set proportionally to the html root font size: https://css-tricks.com/html-vs-body-in-css/ */
 	font-family: 'Roboto', sans-serif;
 	font-size: 1cm;
 	line-height: 1.375; /* Use proportional line spacing so everything is self-consistent */
-	/* Also set up the background.  Eventually this will be a separate color/gradient section */
-	background-color: #395831;
-	background: url("Resources/rotated-circuit-board.svg");
-	background-repeat: no-repeat;
-	/* Override circuit board style with a gradient */
-	background-size: cover;
-	background: white;
-	background: linear-gradient(to bottom, #eee9ee, white);  /* Make the poster more cheery than plain gray by incorporating a hint of the purple font color */
-	/* Can set overall document "margins" here */
-	padding: 1.5cm;
-	/* See also https://css-tricks.com/html-vs-body-in-css/ meaning that rem is set relative to the html root font size */
 }
 
 h1, h2:not(.author) {
@@ -73,18 +70,33 @@ caption {
 }
 
 
+
+/* Poster background */
+html {
+	/* Also set up the background.  Eventually this will be a separate color/gradient section */
+	/* Old example of a circuit board */
+	/* background-color: #395831;
+	background: url("Resources/rotated-circuit-board.svg");
+	background-repeat: no-repeat; */
+	/* Or, override circuit board style with a gradient */
+	background-size: cover;
+	background: white;
+	background: linear-gradient(to bottom, #eee9ee, white);  /* Make the poster more cheery than plain gray by incorporating a hint of the purple font color */
+}
+
 /* Poster title/header */
 .reveal .slides > section:first-child {
 	grid-column: span 12;  /* full width of the poster */
 	text-align: center;
-	/*background: lightgray;
-	background: linear-gradient(to right, lightgray, white);
-	background: linear-gradient(to bottom, lightgray, white);*/
-	/*opacity: 0.9;*/ /* but also assigns the alpha to content */
 	width: 100%;
 	box-sizing: border-box;
 	padding: 0 1%;
 	/* box-shadow: 0 10px black; */ /* NEW: consider merging with the rest of the poster more elegantly like this */
+	/* If the background is a complex image, then an overlay may be necessary: */
+	/*background: lightgray;
+	background: linear-gradient(to right, lightgray, white);
+	background: linear-gradient(to bottom, lightgray, white);*/
+	/*opacity: 0.9;*/ /* but also assigns the alpha to content */
 }
 
 .reveal .slides > section:first-child ol.affiliations {
@@ -129,31 +141,10 @@ caption {
 	color: red;
 }
 
-/* Set up slide layout */
-.reveal .slides .titleslide {
-	display: none;
-}
 
-.reveal .slides {
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	grid-column-gap: 0.5in;  /* gap between columns */
-	/* Let's set up the grid to be similar to bootstrap, where there are 12 equal columns which are combined via .col-x classes, e.g. .col-6 for half of the width */
-	/* See https://css-tricks.com/things-ive-learned-css-grid-layout/ and https://hacks.mozilla.org/2017/04/replace-bootstrap-layouts-with-css-grid/ for inspiration */
-	/* See also https://css-tricks.com/snippets/css/complete-guide-grid/ and https://gridbyexample.com/examples/ for general help */
-}
 
-.reveal .slides.fill_page {
-	/* Space the content to fill the entire poster, if the fill_page variable is set */
-	align-content: space-between;
-	height: inherit;  /* Through a series of steps, height eventually inherits from the html page size */
-}
-
-.reveal {
-	/* Should probably check how reveal.js handles the div's autoshrinking.  Maybe just set the smallest one? */
-	height: inherit;
-}
-
+/* Set up section layout (grid item), which can contain multiple poster blocks that are automatically spaced */
+/* Is the :not(:first-child) specification necessary anymore?  Not trying to exclude the header with the new rule */
 .reveal .slides > .section:not(:first-child) {
 	display: flex;
 	/*flex-flow: row wrap;*/
@@ -201,6 +192,12 @@ caption {
 	flex-grow: 1;
 }
 
+.reveal .slides.fill_page {
+	/* Space the content to fill the entire poster, if the fill_page variable is set */
+	align-content: space-between;
+	height: inherit;  /* Through a series of steps, height eventually inherits from the html page size */
+}
+
 .level1 h1 {
 	/* Pseudo elements for pandoc div's */
 	display: none;
@@ -226,35 +223,47 @@ pre {
 	font-size: 60%; /* This will likely need to be adjusted */
 }
 
-/* FIXME: these .col-x classes don't work yet.  The current poster is handled via the rule for .reveal .slides > section:not(:first-child) */
-/* Need to do some cleanup to ensure we know exactly what is controlling what, in the new design */
-.reveal .slides .col-1 {
-	grid-column: span 12;
-	/*width: 98%;*/
-}
-
-.reveal .slides .col-2 {
-	grid-column: span 6;
-	/*width: 48%;*/
-	/* Long-term: should make the intercolumn spacing customizable, too, maybe with CSS variables? */
-	/* Might also consider doing this with flex:1, or similar code, to allow uneven rows, etc. */
-}
-
-.reveal .slides .col-3 {
-	grid-column: span 4;
-	/*width: 31%;*/
-}
-
-.reveal .slides .col-4 {
-	grid-column: span 3;
-}
-
 img {
 	width: 100%;  /* Make it fit inside the 2-column, etc, flexbox */
 	height: auto;
 	background-color: white;  /* Eliminate transparency for consistency among all images */
 	border: 0.1cm solid black;  /* Address the lack of transparency with borders */
 }
+
+
+
+/* Set up slide layout */
+.reveal .slides .titleslide {
+	display: none;
+}
+
+.reveal .slides {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-column-gap: 0.5in;  /* gap between columns */
+	/* Let's set up the grid to be similar to bootstrap, where there are 12 equal columns which are combined via .col-x classes, e.g. .col-6 for half of the width */
+	/* See https://css-tricks.com/things-ive-learned-css-grid-layout/ and https://hacks.mozilla.org/2017/04/replace-bootstrap-layouts-with-css-grid/ for inspiration */
+	/* See also https://css-tricks.com/snippets/css/complete-guide-grid/ and https://gridbyexample.com/examples/ for general help */
+	/* The presentation [CSS Grid Changes Everything](https://www.youtube.com/watch?v=txZq7Laz7_4) is also inspirational. */
+}
+
+/* FIXME: Still need to do some cleanup to ensure we know exactly what is controlling what, in the new design */
+.reveal .slides .col-1 {
+	grid-column: span 12;
+}
+
+.reveal .slides .col-2 {
+	grid-column: span 6;
+}
+
+.reveal .slides .col-3 {
+	grid-column: span 4;
+}
+
+.reveal .slides .col-4 {
+	grid-column: span 3;
+}
+
 
 
 /* special QR code handling */
@@ -270,6 +279,7 @@ img {
 	flex: 0 0 92%;
 	margin: auto auto 0 auto; /* Offset for emphasis */
 }
+
 
 
 /* General formatting */
