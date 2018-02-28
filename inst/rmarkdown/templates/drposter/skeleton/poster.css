@@ -34,6 +34,12 @@ body {
 	height: inherit;
 }
 
+.reveal .slides.fill_page {
+	/* Space the content to fill the entire poster, if the fill_page variable is set */
+	align-content: space-between;
+	height: inherit;  /* Through a series of steps, height eventually inherits from the html page size */
+}
+
 
 
 /* Font-sizes.  These could also be set proportionally to the base html size */
@@ -84,8 +90,10 @@ html {
 	background: linear-gradient(to bottom, #eee9ee, white);  /* Make the poster more cheery than plain gray by incorporating a hint of the purple font color */
 }
 
+
+
 /* Poster title/header */
-.reveal .slides > section:first-child {
+.reveal .slides > header {
 	grid-column: span 12;  /* full width of the poster */
 	text-align: center;
 	width: 100%;
@@ -99,14 +107,14 @@ html {
 	/*opacity: 0.9;*/ /* but also assigns the alpha to content */
 }
 
-.reveal .slides > section:first-child ol.affiliations {
+.reveal .slides > header ol.affiliations {
 	font-size: 0.75em;
 	margin-top: 0.5em;
 	list-style-type: none;
 	counter-reset: institution-counter;
 }
 
-.reveal .slides > section:first-child ol.affiliations li:before {
+.reveal .slides > header ol.affiliations li:before {
 	content: counter(institution-counter);  /* Comment out this line if there is only one institution */
 	counter-increment: institution-counter;
 	/* Superscripting copied from .cite at bottom */
@@ -117,19 +125,19 @@ html {
 	font-size: 0.8em;
 }
 
-.reveal .slides > section:first-child ol.affiliations li:after {
+.reveal .slides > header ol.affiliations li:after {
 	/* Get glyph information from https://css-tricks.com/snippets/html/glyphs/ */
 	content: "\2022";
 	padding: 0 0.3em 0 0.5em;  /* Not sure why the li formatting is inconsistent */
 }
 
-.reveal .slides > section:first-child ol.affiliations li:nth-child(3n+3):after, .reveal .slides > section:first-child ol.affiliations li:last-child:after {
+.reveal .slides > header ol.affiliations li:nth-child(3n+3):after, .reveal .slides > header ol.affiliations li:last-child:after {
 	content: none;
 	padding: 0;
 } /* I had six affiliations in my original poster.  Added the last-child rule for the demo */
 
 
-.reveal .slides > section:first-child ol.affiliations li {
+.reveal .slides > header ol.affiliations li {
 	display: inline-block;
 }
 
@@ -144,17 +152,12 @@ html {
 
 
 /* Set up section layout (grid item), which can contain multiple poster blocks that are automatically spaced */
-/* Is the :not(:first-child) specification necessary anymore?  Not trying to exclude the header with the new rule */
-.reveal .slides > .section:not(:first-child) {
+/* The header does not have the class .section, so it will not be selected by this rule */
+.reveal .slides > .section {
 	display: flex;
-	/*flex-flow: row wrap;*/
-	flex-flow: column; /* TODO: figure out how to change this back for automatically filling .by-row-X, with similar notation as the columns */
+	flex-flow: column;
 	justify-content: space-between;
 	flex: 1 1 auto;
-	/* TODO: reimport padding? */
-	/*padding: 0 1cm;*/  /* Simply adjust left-right document margins for the main content */
-	/* FIXME: temporary since the .col-1 h1 classes are failing (not setting the parent section, but rather the child).  I should figure out if there's an alternative that reaches the parent grid.  Maybe subgrid?  Another keyword or flexbox thing I'm missing? */
-/*	grid-column: span 4;*/  /* This was used in my old layout to get the 3-column setting, but it overrides all of the actual column specs */
 }
 
 .reveal .slides .level2 h2 {
@@ -190,12 +193,6 @@ html {
 .reveal .slides .level2:only-of-type {
 	/* If there is only one block, stretch it, because there are no adjacent elements for space-between */
 	flex-grow: 1;
-}
-
-.reveal .slides.fill_page {
-	/* Space the content to fill the entire poster, if the fill_page variable is set */
-	align-content: space-between;
-	height: inherit;  /* Through a series of steps, height eventually inherits from the html page size */
 }
 
 .level1 h1 {
@@ -248,6 +245,7 @@ img {
 }
 
 /* FIXME: Still need to do some cleanup to ensure we know exactly what is controlling what, in the new design */
+/* Note these classes are based on number of desired equal columns, not the fraction out of 12 */
 .reveal .slides .col-1 {
 	grid-column: span 12;
 }
