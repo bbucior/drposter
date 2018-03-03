@@ -1,8 +1,8 @@
 ---
-title: "drposter: Generate Academic Posters in R Markdown Based on 'reveal.js' Presentations"
+title: "drposter: Generate Academic Posters in R Markdown and CSS"
 author: ["<span class=\"presenter\">Ben Bucior<sup>1</sup></span>, &lt;Your name here&gt;<sup>2</sup><ol class=\"affiliations\"><li>Northwestern University, Evanston, IL, USA</li><li>Earth</li></ol>"]
 output:
-  drposter::revealjs_poster:
+  drposter::drposter_poster:
     fill_page: FALSE
 csl: american-chemical-society.csl
 references:
@@ -116,7 +116,7 @@ Images can also be loaded by file path using the standard Markdown syntax.  For 
 This repository is under development and should be considered alpha-level software.  **Do not use it directly for academic or professional content without having a proper backup to fully compile your posters.**  The CSS classes and/or notation are not finalized and may break without warning.
 </div>
 
-This package will be updated as I make new posters for research, but it's still a work in progress. Installation of this package is easy using the `devtools` package: simply run `devtools::install_github("bbucior/drposter")`.  After installation, the format will be available as an R Markdown template in the "New R Markdown" wizard.
+This package will be updated as I make new posters for research, but it's still a work in progress. Installation of this package is easy using the `devtools` package: simply run `devtools::install_github("bbucior/drposter")`.  After installation, the format will be available as an R Markdown template in the "New R Markdown" wizard.  _Note:_ one time the package installation updated my version of rmarkdown, which also required updating knitr before it would work.
 
 <p class="qr">
 ![QR code](Resources/qr_code.png)
