@@ -29,12 +29,7 @@ body {
 	-webkit-print-color-adjust: exact;  /* Enable background printing in Chrome: http://stackoverflow.com/questions/3893986/css-media-print-issues-with-background-color */
 }
 
-.reveal {
-	/* Should probably check how reveal.js handles the div's autoshrinking.  Maybe just set the smallest one? */
-	height: inherit;
-}
-
-.reveal .slides.fill_page {
+.slides.fill_page {
 	/* Space the content to fill the entire poster, if the fill_page variable is set */
 	align-content: space-between;
 	height: inherit;  /* Through a series of steps, height eventually inherits from the html page size */
@@ -93,7 +88,7 @@ html {
 
 
 /* Poster title/header */
-.reveal .slides > header {
+.slides > header {
 	grid-column: span 12;  /* full width of the poster */
 	text-align: center;
 	width: 100%;
@@ -107,14 +102,14 @@ html {
 	/*opacity: 0.9;*/ /* but also assigns the alpha to content */
 }
 
-.reveal .slides > header ol.affiliations {
+.slides > header ol.affiliations {
 	font-size: 0.75em;
 	margin-top: 0.5em;
 	list-style-type: none;
 	counter-reset: institution-counter;
 }
 
-.reveal .slides > header ol.affiliations li:before {
+.slides > header ol.affiliations li:before {
 	content: counter(institution-counter);  /* Comment out this line if there is only one institution */
 	counter-increment: institution-counter;
 	/* Superscripting copied from .cite at bottom */
@@ -125,19 +120,19 @@ html {
 	font-size: 0.8em;
 }
 
-.reveal .slides > header ol.affiliations li:after {
+.slides > header ol.affiliations li:after {
 	/* Get glyph information from https://css-tricks.com/snippets/html/glyphs/ */
 	content: "\2022";
 	padding: 0 0.3em 0 0.5em;  /* Not sure why the li formatting is inconsistent */
 }
 
-.reveal .slides > header ol.affiliations li:nth-child(3n+3):after, .reveal .slides > header ol.affiliations li:last-child:after {
+.slides > header ol.affiliations li:nth-child(3n+3):after, .reveal .slides > header ol.affiliations li:last-child:after {
 	content: none;
 	padding: 0;
 } /* I had six affiliations in my original poster.  Added the last-child rule for the demo */
 
 
-.reveal .slides > header ol.affiliations li {
+.slides > header ol.affiliations li {
 	display: inline-block;
 }
 
@@ -153,14 +148,14 @@ html {
 
 /* Set up section layout (grid item), which can contain multiple poster blocks that are automatically spaced */
 /* The header does not have the class .section, so it will not be selected by this rule */
-.reveal .slides > .section {
+.slides > .section {
 	display: flex;
 	flex-flow: column;
 	justify-content: space-between;
 	flex: 1 1 auto;
 }
 
-.reveal .slides .level2 h2 {
+.slides .level2 h2 {
 	width: 100%;
 	height: 2em;
 	line-height: calc(2em - 1cm); /* Subtract off padding from border-box */
@@ -173,7 +168,7 @@ html {
 	margin: -1em auto 0 auto;
 }
 
-.reveal .slides .level2 { 
+.slides .level2 { 
 	border-radius: 1cm;
 	padding: 0 1cm;
 	box-sizing: border-box;
@@ -190,13 +185,15 @@ html {
 	align-content: flex-start;
 }
 
-.reveal .slides .level2:only-of-type {
+.slides .level2:only-of-type {
 	/* If there is only one block, stretch it, because there are no adjacent elements for space-between */
 	flex-grow: 1;
 }
 
 .level1 h1 {
-	/* Pseudo elements for pandoc div's */
+	/* An h1 tag is still generated when using # {.col-2}, etc. specification for a block. */
+	/* For now, let's ignore these h1 tags, but later these could be stylized for overall section headings, etc. */
+	/* It might also be interesting to set the background-color of the section, which is a .level1 block */
 	display: none;
 }
 
@@ -230,11 +227,11 @@ img {
 
 
 /* Set up slide layout */
-.reveal .slides .titleslide {
+.slides .titleslide {
 	display: none;
 }
 
-.reveal .slides {
+.slides {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	grid-column-gap: 0.5in;  /* gap between columns */
@@ -246,19 +243,19 @@ img {
 
 /* FIXME: Still need to do some cleanup to ensure we know exactly what is controlling what, in the new design */
 /* Note these classes are based on number of desired equal columns, not the fraction out of 12 */
-.reveal .slides .col-1 {
+.slides .col-1 {
 	grid-column: span 12;
 }
 
-.reveal .slides .col-2 {
+.slides .col-2 {
 	grid-column: span 6;
 }
 
-.reveal .slides .col-3 {
+.slides .col-3 {
 	grid-column: span 4;
 }
 
-.reveal .slides .col-4 {
+.slides .col-4 {
 	grid-column: span 3;
 }
 

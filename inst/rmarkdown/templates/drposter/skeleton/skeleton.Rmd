@@ -2,7 +2,7 @@
 title: "Untitled"
 author: "Your name here"
 output:
-  drposter::revealjs_poster:
+  drposter::drposter_poster:
     self_contained: false
     css: poster.css
 ---
