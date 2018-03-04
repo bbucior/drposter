@@ -4,6 +4,8 @@
 
 /* Page setup */
 /* reveal.js:536 sets it as @page{size:'+ pageWidth +'px '+ pageHeight +'px; margin: 0;} */
+/* Google Chrome recognizes this keyword, but not yet in Firefox (so PDF settings must be manually specified) */
+/* See draft spec information at https://developer.mozilla.org/en-US/docs/Web/CSS/@page/size */
 @page {
 	size: 841mm 1189mm;  /* A0 paper for now */
 	margin: 0;

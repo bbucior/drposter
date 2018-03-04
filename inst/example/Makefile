@@ -26,8 +26,10 @@ poster.html: poster.Rmd poster.css
 	${RUN_R} -e 'rmarkdown::render("$<")'
 
 ../../README.md: poster.Rmd poster.css
-	${RUN_R} -e 'rmarkdown::render("$<", "github_document")'; \
-	mv poster.md $@
+	${RUN_R} -e 'rmarkdown::render("$<", "github_document", output_file="github.md")'; \
+	rm github.html; \
+	rm -r github_files; \
+	mv github.md $@
 
 # In theory, we could also convert the poster to a presentation in one line of code.
 # Though the content size and organization will not likely fit well with the presentation,

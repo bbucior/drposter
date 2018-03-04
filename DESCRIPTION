@@ -1,6 +1,6 @@
 Package: drposter
 Title: Generate academic posters in R Markdown and CSS
-Version: 0.0.0.9005
+Version: 0.0.2.9000
 Authors@R: person("Ben", "Bucior", email = "bbucior@u.northwestern.edu", role = c("aut", "cre"))
 Description: R Markdown (pandoc) format to generate reproducible posters,
     inspired by 'reveal.js' presentations.
