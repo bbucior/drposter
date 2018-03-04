@@ -4,6 +4,8 @@
 
 /* Page setup */
 /* reveal.js:536 sets it as @page{size:'+ pageWidth +'px '+ pageHeight +'px; margin: 0;} */
+/* Google Chrome recognizes this keyword, but not yet in Firefox (so PDF settings must be manually specified) */
+/* See draft spec information at https://developer.mozilla.org/en-US/docs/Web/CSS/@page/size */
 @page {
 	size: 841mm 1189mm;  /* A0 paper for now */
 	margin: 0;
@@ -13,6 +15,7 @@ html {
 	margin: 0;
 	width: 841mm;
 	height: 1189mm;
+	padding: 1.5cm;  /* Overall document "margins" (while keeping the background, etc.) */
 }
 
 @media screen {
@@ -28,9 +31,17 @@ body {
 	-webkit-print-color-adjust: exact;  /* Enable background printing in Chrome: http://stackoverflow.com/questions/3893986/css-media-print-issues-with-background-color */
 }
 
+.slides.fill_page {
+	/* Space the content to fill the entire poster, if the fill_page variable is set */
+	align-content: space-between;
+	height: inherit;  /* Through a series of steps, height eventually inherits from the html page size */
+}
+
+
 
 /* Font-sizes.  These could also be set proportionally to the base html size */
 html {
+	/* Note that rem is set proportionally to the html root font size: https://css-tricks.com/html-vs-body-in-css/ */
 	font-family: 'Roboto', sans-serif;
 	font-size: 1cm;
 	line-height: 1.375; /* Use proportional line spacing so everything is self-consistent */
@@ -62,27 +73,46 @@ caption {
 }
 
 
+
+/* Poster background */
+html {
+	/* Also set up the background.  Eventually this will be a separate color/gradient section */
+	/* Old example of a circuit board */
+	/* background-color: #395831;
+	background: url("Resources/rotated-circuit-board.svg");
+	background-repeat: no-repeat; */
+	/* Or, override circuit board style with a gradient */
+	background-size: cover;
+	background: white;
+	background: linear-gradient(to bottom, #eee9ee, white);  /* Make the poster more cheery than plain gray by incorporating a hint of the purple font color */
+}
+
+
+
 /* Poster title/header */
-.reveal .slides > section:first-child {
+.slides > header {
+	grid-column: span 12;  /* full width of the poster */
 	text-align: center;
-	background: lightgray;
-	background: linear-gradient(to right, lightgray, white);
-	opacity: 0.9; /* but also assigns the alpha to content */
 	width: 100%;
 	box-sizing: border-box;
 	padding: 0 1%;
-	box-shadow: 0 10px black;
+	/* box-shadow: 0 10px black; */ /* NEW: consider merging with the rest of the poster more elegantly like this */
+	/* If the background is a complex image, then an overlay may be necessary: */
+	/*background: lightgray;
+	background: linear-gradient(to right, lightgray, white);
+	background: linear-gradient(to bottom, lightgray, white);*/
+	/*opacity: 0.9;*/ /* but also assigns the alpha to content */
 }
 
-.reveal .slides > section:first-child ol.affiliations {
+.slides > header ol.affiliations {
 	font-size: 0.75em;
 	margin-top: 0.5em;
 	list-style-type: none;
 	counter-reset: institution-counter;
 }
 
-.reveal .slides > section:first-child ol.affiliations li:before {
-	content: counter(institution-counter);
+.slides > header ol.affiliations li:before {
+	content: counter(institution-counter);  /* Comment out this line if there is only one institution */
 	counter-increment: institution-counter;
 	/* Superscripting copied from .cite at bottom */
 	vertical-align: baseline;
@@ -92,19 +122,19 @@ caption {
 	font-size: 0.8em;
 }
 
-.reveal .slides > section:first-child ol.affiliations li:after {
+.slides > header ol.affiliations li:after {
 	/* Get glyph information from https://css-tricks.com/snippets/html/glyphs/ */
 	content: "\2022";
 	padding: 0 0.3em 0 0.5em;  /* Not sure why the li formatting is inconsistent */
 }
 
-.reveal .slides > section:first-child ol.affiliations li:nth-child(3n+3):after, .reveal .slides > section:first-child ol.affiliations li:last-child:after {
+.slides > header ol.affiliations li:nth-child(3n+3):after, .reveal .slides > header ol.affiliations li:last-child:after {
 	content: none;
 	padding: 0;
 } /* I had six affiliations in my original poster.  Added the last-child rule for the demo */
 
 
-.reveal .slides > section:first-child ol.affiliations li {
+.slides > header ol.affiliations li {
 	display: inline-block;
 }
 
@@ -116,37 +146,18 @@ caption {
 	color: red;
 }
 
-/* Set up slide layout */
-.reveal .slides .titleslide {
-	display: none;
-}
 
-.reveal .slides {
+
+/* Set up section layout (grid item), which can contain multiple poster blocks that are automatically spaced */
+/* The header does not have the class .section, so it will not be selected by this rule */
+.slides > .section {
 	display: flex;
-	flex-direction: column;
-	background-color: #395831;
-	background: url("Resources/rotated-circuit-board.svg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	height: inherit;
-	/* padding: 1cm; */ /* Can set overall document "margins" here */
-}
-
-.reveal {
-	/* Should probably check how reveal.js handles the div's autoshrinking.  Maybe just set the smallest one? */
-	height: inherit;
-}
-
-.reveal .slides > section:not(:first-child) {
-	display: flex;
-	/* flex-flow: column wrap; */
-	flex-flow: row wrap;  /* Need to figure out multi-column later, but my poster used rows */
+	flex-flow: column;
 	justify-content: space-between;
 	flex: 1 1 auto;
-	padding: 0 1cm;  /* Simply adjust left-right document margins for the main content */
 }
 
-.reveal .slides .slide h2 {
+.slides .level2 h2 {
 	width: 100%;
 	height: 2em;
 	line-height: calc(2em - 1cm); /* Subtract off padding from border-box */
@@ -159,7 +170,7 @@ caption {
 	margin: -1em auto 0 auto;
 }
 
-.reveal .slides section .level2 { 
+.slides .level2 { 
 	border-radius: 1cm;
 	padding: 0 1cm;
 	box-sizing: border-box;
@@ -167,13 +178,25 @@ caption {
 	margin-top: 2cm;
 	/* Chrome is not handling the background opacity correctly when printing: https://bugs.chromium.org/p/chromium/issues/detail?id=226137 */
 	/* background-color: rgba(255, 255, 255, 0.9); */
-	background-color: rgb(224, 222, 222);
-	border: 0.2cm solid purple;
-	box-shadow: 5px 5px 5px black;
+	/* background-color: rgb(224, 222, 222); */ /* NEW: consider if we want to blend with background */
+	border: 0.2cm solid #400040;
+	/* box-shadow: 5px 5px 5px black; */ /* NEW: remove for clarity? */
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;  /* space between columns */
 	align-content: flex-start;
+}
+
+.slides .level2:only-of-type {
+	/* If there is only one block, stretch it, because there are no adjacent elements for space-between */
+	flex-grow: 1;
+}
+
+.level1 h1 {
+	/* An h1 tag is still generated when using # {.col-2}, etc. specification for a block. */
+	/* For now, let's ignore these h1 tags, but later these could be stylized for overall section headings, etc. */
+	/* It might also be interesting to set the background-color of the section, which is a .level1 block */
+	display: none;
 }
 
 p, pre {
@@ -182,23 +205,18 @@ p, pre {
 	box-sizing: border-box;
 }
 
+h3 {
+	flex: 100%;
+	font-family: 'Monda', sans-serif;
+	color: #400040;
+	font-size: 1.3em;
+	margin: 0; /* FIXME */
+	/* automatic margins were too large, and margins from p, etc., take care of it nicely.  This results because flexbox does not collapse margins, unlike block-level formatting  */
+}
+
 pre {
 	min-width: 0;  /* Fixes a flexbox incompatibility for pre, per recommendation from http://stackoverflow.com/questions/32035406/how-to-limit-pre-tag-width-inside-flex-container */
 	font-size: 60%; /* This will likely need to be adjusted */
-}
-
-.reveal .slides .col-1 ~ .level2 {
-	width: 98%;
-}
-
-.reveal .slides .col-2 ~ .level2 {
-	width: 48%;
-	/* Long-term: should make the intercolumn spacing customizable, too, maybe with CSS variables? */
-	/* Might also consider doing this with flex:1, or similar code, to allow uneven rows, etc. */
-}
-
-.reveal .slides .col-3 ~ .level2 {
-	width: 31%;
 }
 
 img {
@@ -207,6 +225,42 @@ img {
 	background-color: white;  /* Eliminate transparency for consistency among all images */
 	border: 0.1cm solid black;  /* Address the lack of transparency with borders */
 }
+
+
+
+/* Set up slide layout */
+.slides .titleslide {
+	display: none;
+}
+
+.slides {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-column-gap: 0.5in;  /* gap between columns */
+	/* Let's set up the grid to be similar to bootstrap, where there are 12 equal columns which are combined via .col-x classes, e.g. .col-6 for half of the width */
+	/* See https://css-tricks.com/things-ive-learned-css-grid-layout/ and https://hacks.mozilla.org/2017/04/replace-bootstrap-layouts-with-css-grid/ for inspiration */
+	/* See also https://css-tricks.com/snippets/css/complete-guide-grid/ and https://gridbyexample.com/examples/ for general help */
+	/* The presentation [CSS Grid Changes Everything](https://www.youtube.com/watch?v=txZq7Laz7_4) is also inspirational. */
+}
+
+/* FIXME: Still need to do some cleanup to ensure we know exactly what is controlling what, in the new design */
+/* Note these classes are based on number of desired equal columns, not the fraction out of 12 */
+.slides .col-1 {
+	grid-column: span 12;
+}
+
+.slides .col-2 {
+	grid-column: span 6;
+}
+
+.slides .col-3 {
+	grid-column: span 4;
+}
+
+.slides .col-4 {
+	grid-column: span 3;
+}
+
 
 
 /* special QR code handling */
@@ -222,6 +276,7 @@ img {
 	flex: 0 0 92%;
 	margin: auto auto 0 auto; /* Offset for emphasis */
 }
+
 
 
 /* General formatting */
@@ -256,4 +311,5 @@ sub {
 
 .references {
 	margin: 1em 0;
+	font-size: 0.8em;
 }

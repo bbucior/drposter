@@ -23,9 +23,6 @@ $endfor$
 $else$
     <link rel="stylesheet" href="poster.css" id="theme">
 $endif$
-  <!--[if lt IE 9]>
-  <script src="$revealjs-url$/lib/js/html5shiv.js"></script>
-  <![endif]-->
 $if(math)$
     $math$
 $endif$
@@ -37,11 +34,10 @@ $endfor$
 $for(include-before)$
 $include-before$
 $endfor$
-  <div class="reveal">
-    <div class="slides">
+<div class="slides $if(fill_page)$fill_page$endif$">
 
 $if(title)$
-<section>
+<header>
     <h1 class="title">$title$</h1>
 $if(subtitle)$
   <h1 class="subtitle">$subtitle$</h1>
@@ -52,12 +48,11 @@ $endfor$
 $if(date)$
     <h3 class="date">$date$</h3>
 $endif$
-</section>
+</header>
 $endif$
 
 $body$
-    </div>
-  </div>
+</div>
 $for(include-after)$
 $include-after$
 $endfor$
