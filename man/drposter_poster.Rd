@@ -5,20 +5,22 @@
 \title{Generate academic posters in R Markdown and CSS}
 \usage{
 drposter_poster(self_contained = FALSE, template = NULL,
-  css = "poster.css", pandoc_args = NULL, theme = NULL,
-  fill_page = FALSE, ...)
+  css = "custom.css", pandoc_args = NULL, theme = NULL,
+  fill_page = FALSE, resource_path = "drposter_files/", ...)
 }
 \arguments{
 \item{self_contained}{Whether or not the poster should be packaged into a
 a single self-contained file. Set to \code{FALSE} by default to save build time.}
 
 \item{template}{Pandoc template to use for rendering. Pass \code{NULL} to use
-the HTML poster template built into this package.  You can also pass a path
-to a custom pandoc template that you've created.}
+the default HTML poster template for this package, which is copied to the
+drposter_files subdirectory.  You can also pass a path to a custom pandoc
+template that you've created.}
 
 \item{css}{One or more CSS files defining the poster styling. Some base
-styles in poster.css are copied by default into the current directory and
-automatically linked in the generated HTML unless this parameter is defined.}
+styles in drposter.css are copied by default into a subdirectory and
+automatically linked in the generated HTML, in addition to custom styles
+specified by this parameter (e.g. custom.css).}
 
 \item{pandoc_args}{Additional command line options to pass to pandoc}
 
@@ -27,6 +29,11 @@ automatically linked in the generated HTML unless this parameter is defined.}
 \item{fill_page}{Can optionally stretch the page content (by distributing
 whitespace between blocks) to span the entire height assigned to the poster.
 By default this is set to \code{FALSE}, which places content without extra spacing.}
+
+\item{resource_path}{Path to the pandoc HTML template and default CSS resource files
+for the poster. (or NULL to skip and manually specify them)  By default,
+rmarkdown will copy these files into the drposter_files/ subdirectory for a
+document, allowing easy optional updates to newer versions of the template.}
 
 \item{...}{Additional parameters to pass to html_document; otherwise ignored.}
 }
