@@ -19,7 +19,7 @@
 #'   the default HTML poster template for this package, which is copied to the
 #'   drposter_files subdirectory.  You can also pass a path to a custom pandoc
 #'   template that you've created.
-#' @param resource_path Path to the pandoc HTML template and default CSS resource files
+#' @param lib_dir Path to the pandoc HTML template and default CSS resource files
 #'   for the poster. (or NULL to skip and manually specify them)  By default,
 #'   rmarkdown will copy these files into the drposter_files/ subdirectory for a
 #'   document, allowing easy optional updates to newer versions of the template.
@@ -61,15 +61,14 @@ drposter_poster <- function(self_contained = FALSE,
                             pandoc_args = NULL,
                             theme = NULL,
                             fill_page = FALSE,
-                            resource_path = "drposter_files/",
+                            lib_dir = "drposter_files/",
                             ...) {
   # Generate a new output format using a template modified from pandoc
   # With help from http://rmarkdown.rstudio.com/developer_custom_formats.html
   css_includes <- NULL
   template_file <- NULL
-  if (!is.null(resource_path)) {
-    css_includes <- file.path(resource_path, "drposter.css", fsep="/")
-    template_file <- file.path(resource_path, "drposter.html", fsep="/")
+  if (!is.null(lib_dir)) {
+    template_file <- file.path(lib_dir, "drposter.html", fsep="/")
   }
   # If specified, override the local template and CSS
   if (!is.null(template)) {
@@ -85,6 +84,9 @@ drposter_poster <- function(self_contained = FALSE,
       fill_page = ""  # pandoc uses a different boolean notation (empty strings) than R
     }
     args <- c(args, "--variable", paste0("fill_page=", fill_page))
+  }
+  if (!is.null(lib_dir)) {
+    args <- c(args, "--variable", paste0("lib_dir=", lib_dir))
   }
   if (!is.null(pandoc_args)) {
     args <- c(args, pandoc_args)

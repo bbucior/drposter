@@ -16,12 +16,13 @@ $if(highlighting-css)$
 $highlighting-css$
     </style>
 $endif$
+$if(lib_dir)$
+    <link rel="stylesheet" href="$lib_dir$/drposter.css" />
+$endif$
 $if(css)$
 $for(css)$
     <link rel="stylesheet" href="$css$"/>
 $endfor$
-$else$
-    <link rel="stylesheet" href="poster.css" id="theme">
 $endif$
 $if(math)$
     $math$

@@ -6,7 +6,7 @@
 \usage{
 drposter_poster(self_contained = FALSE, template = NULL,
   css = "custom.css", pandoc_args = NULL, theme = NULL,
-  fill_page = FALSE, resource_path = "drposter_files/", ...)
+  fill_page = FALSE, lib_dir = "drposter_files/", ...)
 }
 \arguments{
 \item{self_contained}{Whether or not the poster should be packaged into a
@@ -30,7 +30,7 @@ specified by this parameter (e.g. custom.css).}
 whitespace between blocks) to span the entire height assigned to the poster.
 By default this is set to \code{FALSE}, which places content without extra spacing.}
 
-\item{resource_path}{Path to the pandoc HTML template and default CSS resource files
+\item{lib_dir}{Path to the pandoc HTML template and default CSS resource files
 for the poster. (or NULL to skip and manually specify them)  By default,
 rmarkdown will copy these files into the drposter_files/ subdirectory for a
 document, allowing easy optional updates to newer versions of the template.}
