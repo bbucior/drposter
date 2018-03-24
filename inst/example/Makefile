@@ -15,17 +15,18 @@ publish:
 	echo "Not yet implemented"
 github: ../../README.md
 
-poster.css: ../rmarkdown/templates/drposter/skeleton/poster.css
-	cp $^ $@
+drposter_files/drposter.css: ../rmarkdown/templates/drposter/skeleton/drposter_files/drposter.css
+	${RUN_R} -e 'drposter::drposter_update()'
+
 # Haven't gotten this automated yet.  At least manually converting from HTML to PDF is quick.
 # This crashes without writing the output file.
 #poster.pdf: poster.html
 #	${WHICH_CHROME} --headless --print-to-pdf=$@ $^
 
-poster.html: poster.Rmd poster.css
+poster.html: poster.Rmd drposter_files/drposter.css
 	${RUN_R} -e 'rmarkdown::render("$<")'
 
-../../README.md: poster.Rmd poster.css
+../../README.md: poster.Rmd
 	${RUN_R} -e 'rmarkdown::render("$<", "github_document", output_file="github.md")'; \
 	rm github.html; \
 	rm -r github_files; \
