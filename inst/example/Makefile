@@ -1,6 +1,6 @@
 .PHONY: publish github
 
-RUN_R = export R_LIBS_USER="C:/Users/$(shell whoami)/Documents/R/win-library/3.4" && Rscript --vanilla
+RUN_R = export R_LIBS_USER="C:/Users/${USER}/Documents/R/win-library/3.4" && Rscript --vanilla
 #WHICH_CHROME := "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
 
 # Automatically compile example poster and other templates
