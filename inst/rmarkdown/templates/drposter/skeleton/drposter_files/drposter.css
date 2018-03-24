@@ -1,3 +1,5 @@
+/* This CSS is from the drposter template for pandoc/rmarkdown and is released into the public domain (CC0).  Have fun! */
+
 /* Download fonts. @import must come before any rules in the document */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,700|Monda:400,700);
 
@@ -128,7 +130,7 @@ html {
 	padding: 0 0.3em 0 0.5em;  /* Not sure why the li formatting is inconsistent */
 }
 
-.slides > header ol.affiliations li:nth-child(3n+3):after, .reveal .slides > header ol.affiliations li:last-child:after {
+.slides > header ol.affiliations li:nth-child(2n+2):after, .reveal .slides > header ol.affiliations li:last-child:after {
 	content: none;
 	padding: 0;
 } /* I had six affiliations in my original poster.  Added the last-child rule for the demo */
