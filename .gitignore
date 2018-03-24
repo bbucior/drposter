@@ -3,5 +3,6 @@
 .RData
 # Don't track intermediate steps in generating documentation
 inst/example/poster.html
-inst/example/poster.css
 inst/example/poster_files/
+inst/example/drposter_files/
+inst/example/backup-drposter-*
