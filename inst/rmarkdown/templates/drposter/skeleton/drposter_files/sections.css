@@ -1,0 +1,72 @@
+/* Layout of subsection boxes and their contents */
+
+/* Set up section layout (grid item), which can contain multiple poster blocks that are automatically spaced */
+/* The header does not have the class .section, so it will not be selected by this rule */
+.slides > .section {
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+	flex: 1 1 auto;
+}
+
+.slides .level2 h2 {
+	width: 100%;
+	height: 2em;
+	line-height: calc(2em - 1cm); /* Subtract off padding from border-box */
+	vertical-align: middle;
+	color: white;
+	background: linear-gradient(to left, #800080, #400040);
+	border-radius: 1cm;
+	padding: 0.5cm 1cm;
+	box-sizing: border-box;
+	margin: -1em auto 0 auto;
+}
+
+.slides .level2 { 
+	border-radius: 1cm;
+	padding: 0 1cm;
+	box-sizing: border-box;
+	margin: 0.75cm;  /* This is actually what controls the spacing between ontent.  By default, the flex 1 1 auto is actually stretching everything to the max, but it still looks nice.*/
+	margin-top: 2cm;
+	/* Chrome is not handling the background opacity correctly when printing: https://bugs.chromium.org/p/chromium/issues/detail?id=226137 */
+	/* background-color: rgba(255, 255, 255, 0.9); */
+	/* background-color: rgb(224, 222, 222); */ /* NEW: consider if we want to blend with background */
+	border: 0.2cm solid #400040;
+	/* box-shadow: 5px 5px 5px black; */ /* NEW: remove for clarity? */
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;  /* space between columns */
+	align-content: flex-start;
+}
+
+.slides .level2:only-of-type {
+	/* If there is only one block, stretch it, because there are no adjacent elements for space-between */
+	flex-grow: 1;
+}
+
+.level1 h1 {
+	/* An h1 tag is still generated when using # {.col-2}, etc. specification for a block. */
+	/* For now, let's ignore these h1 tags, but later these could be stylized for overall section headings, etc. */
+	/* It might also be interesting to set the background-color of the section, which is a .level1 block */
+	display: none;
+}
+
+p, pre {
+	flex: 45%;
+	padding: 0 0.3em;
+	box-sizing: border-box;
+}
+
+
+
+pre {
+	min-width: 0;  /* Fixes a flexbox incompatibility for pre, per recommendation from http://stackoverflow.com/questions/32035406/how-to-limit-pre-tag-width-inside-flex-container */
+	font-size: 60%; /* This will likely need to be adjusted */
+}
+
+img {
+	width: 100%;  /* Make it fit inside the 2-column, etc, flexbox */
+	height: auto;
+	background-color: white;  /* Eliminate transparency for consistency among all images */
+	border: 0.1cm solid black;  /* Address the lack of transparency with borders */
+}
