@@ -126,7 +126,7 @@ For more information, please visit the project page at <https://github.com/bbuci
 ## License
 
 The R logo[@logo] is copyright 2016 The R Foundation and dual-licensed as CC-BY-SA 4.0 or GPL-2.
-This package is derived from the excellent reveal.js HTML presentation framework[@revealjs] and corresponding R package.[@rstudio-reveal]
+This package is derived from the excellent reveal.js HTML presentation framework[@revealjs] and corresponding R package.[@rstudio-reveal]  [normalize.css](https://github.com/necolas/normalize.css) is a CSS reset distributed with the MIT license.
 
-This package may be used under multiple licenses.  The entire R package may be used under GPLv3 (like [R markdown](https://github.com/rstudio/rmarkdown)).  The [drposter pandoc template](https://github.com/bbucior/drposter/tree/master/inst/rmarkdown/templates/drposter/skeleton/drposter_files) files are also given under the same conditions as official [pandoc templates](https://github.com/jgm/pandoc/tree/master/data/templates), and the CSS is also released under [CC0 public domain](https://creativecommons.org/publicdomain/zero/1.0/).
+This package may be used under multiple licenses.  The entire R package may be used under GPLv3 (like [R markdown](https://github.com/rstudio/rmarkdown)).  The [drposter pandoc template](https://github.com/bbucior/drposter/tree/master/inst/rmarkdown/templates/drposter/skeleton/drposter_files) files are also given under the same conditions as official [pandoc templates](https://github.com/jgm/pandoc/tree/master/data/templates), and the poster CSS is also released under [CC0 public domain](https://creativecommons.org/publicdomain/zero/1.0/).
 
