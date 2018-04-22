@@ -4,7 +4,8 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,700|Monda:400,700);
 
 
-/* Page setup */
+/******** Page setup ********/
+
 /* reveal.js:536 sets it as @page{size:'+ pageWidth +'px '+ pageHeight +'px; margin: 0;} */
 /* Google Chrome recognizes this keyword, but not yet in Firefox (so PDF settings must be manually specified) */
 /* See draft spec information at https://developer.mozilla.org/en-US/docs/Web/CSS/@page/size */
@@ -41,7 +42,9 @@ body {
 
 
 
-/* Font-sizes.  These could also be set proportionally to the base html size */
+/******** Fonts ********/
+
+/* Font-sizes could also be set proportionally to the base html size */
 html {
 	/* Note that rem is set proportionally to the html root font size: https://css-tricks.com/html-vs-body-in-css/ */
 	font-family: 'Roboto', sans-serif;
@@ -74,9 +77,18 @@ caption {
 	font-size: inherit;
 }
 
+h3 {
+	flex: 100%;
+	font-family: 'Monda', sans-serif;
+	color: #400040;
+	font-size: 1.3em;
+	margin: 0; /* FIXME */
+	/* automatic margins were too large, and margins from p, etc., take care of it nicely.  This results because flexbox does not collapse margins, unlike block-level formatting  */
+}
 
 
-/* Poster background */
+/******** Poster background ********/
+
 html {
 	/* Also set up the background.  Eventually this will be a separate color/gradient section */
 	/* Old example of a circuit board */
@@ -91,7 +103,8 @@ html {
 
 
 
-/* Poster title/header */
+/******** Title/header ********/
+
 .slides > header {
 	grid-column: span 12;  /* full width of the poster */
 	text-align: center;
@@ -142,10 +155,6 @@ html {
 
 .presenter {
 	font-weight: bold;
-}
-
-.warning {
-	color: red;
 }
 
 
@@ -207,14 +216,7 @@ p, pre {
 	box-sizing: border-box;
 }
 
-h3 {
-	flex: 100%;
-	font-family: 'Monda', sans-serif;
-	color: #400040;
-	font-size: 1.3em;
-	margin: 0; /* FIXME */
-	/* automatic margins were too large, and margins from p, etc., take care of it nicely.  This results because flexbox does not collapse margins, unlike block-level formatting  */
-}
+
 
 pre {
 	min-width: 0;  /* Fixes a flexbox incompatibility for pre, per recommendation from http://stackoverflow.com/questions/32035406/how-to-limit-pre-tag-width-inside-flex-container */
@@ -281,7 +283,8 @@ img {
 
 
 
-/* General formatting */
+/******** General formatting ********/
+
 a {
 	text-decoration: none;
 	color: inherit;
@@ -314,4 +317,8 @@ sub {
 .references {
 	margin: 1em 0;
 	font-size: 0.8em;
+}
+
+.warning {
+	color: red;
 }
