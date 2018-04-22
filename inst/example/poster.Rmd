@@ -106,7 +106,7 @@ To avoid compatibility with future updates to the package, a copy of the templat
 
 ## Community
 
-<div class="autofullwidth warning">
+<div class="fullwidth warning">
 This repository is under development and should be considered alpha-level software.  **Do not use it directly for academic or professional content without having a proper backup to fully compile your posters.**  The CSS classes and/or notation are not finalized and may break without warning.
 </div>
 

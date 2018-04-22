@@ -50,3 +50,9 @@ sub {
 	flex: 0 0 92%;
 	margin: auto auto 0 auto; /* Offset for emphasis */
 }
+
+/* Prevent tables from being scrunched together */
+td, th {
+	padding: 0.2em 0.5em;
+	vertical-align: top;
+}

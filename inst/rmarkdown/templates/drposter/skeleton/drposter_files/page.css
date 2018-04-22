@@ -42,9 +42,8 @@ html {
 	/* background-color: #395831;
 	background: url("Resources/rotated-circuit-board.svg");
 	background-repeat: no-repeat; */
-	/* Or, override circuit board style with a gradient */
+	/*background: linear-gradient(to bottom, #eee9ee, white);*/ /* Can also do gradients, though that requires borders on the image which looks a bit cluttered */
 	background-size: cover;
 	background: white;
-	background: linear-gradient(to bottom, #eee9ee, white);  /* Make the poster more cheery than plain gray by incorporating a hint of the purple font color */
 }
 

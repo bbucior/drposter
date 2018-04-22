@@ -31,7 +31,7 @@
 	/* Chrome is not handling the background opacity correctly when printing: https://bugs.chromium.org/p/chromium/issues/detail?id=226137 */
 	/* background-color: rgba(255, 255, 255, 0.9); */
 	/* background-color: rgb(224, 222, 222); */ /* NEW: consider if we want to blend with background */
-	border: 0.2cm solid #400040;
+	border: 0.25cm solid #400040;
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;  /* space between columns */
@@ -50,10 +50,11 @@
 	display: none;
 }
 
-p, pre {
+p, pre, ul, .figure {
 	flex: 45%;
 	padding: 0 0.3em;
 	box-sizing: border-box;
+	margin: 1em 0;  /* Use the same spacing for flexbox contents */
 }
 
 pre {
@@ -64,13 +65,17 @@ pre {
 img {
 	width: 100%;  /* Make it fit inside the 2-column, etc, flexbox */
 	height: auto;
-	background-color: white;  /* Eliminate transparency for consistency among all images */
-	border: 0.1cm solid black;  /* Address the lack of transparency with borders */
+	background-color: white;  /* Eliminate transparency for consistency among all images with non-white backgrounds */
+	/*border: 0.1cm solid black;*/  /* Address the lack of transparency with borders, which isn't necessary if the background is white */
 }
 
 h3 {
 	flex: 100%;
 	margin: 0; /* FIXME */
 	/* automatic margins were too large, and margins from p, etc., take care of it nicely.  This results because flexbox does not collapse margins, unlike block-level formatting  */
+}
+
+.autofullwidth, .fullwidth {  /* Not actually automatic any more */
+	flex: 100%;
 }
 
