@@ -6,12 +6,9 @@
 	width: 100%;
 	box-sizing: border-box;
 	padding: 0 1%;
-	/* box-shadow: 0 10px black; */ /* NEW: consider merging with the rest of the poster more elegantly like this */
 	/* If the background is a complex image, then an overlay may be necessary: */
 	/*background: lightgray;
-	background: linear-gradient(to right, lightgray, white);
 	background: linear-gradient(to bottom, lightgray, white);*/
-	/*opacity: 0.9;*/ /* but also assigns the alpha to content */
 }
 
 .slides > header ol.affiliations {

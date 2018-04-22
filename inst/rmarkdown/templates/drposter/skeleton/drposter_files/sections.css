@@ -1,6 +1,6 @@
 /* Layout of subsection boxes and their contents */
 
-/* Set up section layout (grid item), which can contain multiple poster blocks that are automatically spaced */
+/* An h1 section layout block (grid item) can contain multiple h2 poster blocks that are automatically spaced */
 /* The header does not have the class .section, so it will not be selected by this rule */
 .slides > .section {
 	display: flex;
@@ -26,13 +26,12 @@
 	border-radius: 1cm;
 	padding: 0 1cm;
 	box-sizing: border-box;
-	margin: 0.75cm;  /* This is actually what controls the spacing between ontent.  By default, the flex 1 1 auto is actually stretching everything to the max, but it still looks nice.*/
+	margin: 0.75cm;  /* This is actually what controls the spacing between content.  By default, the flex 1 1 auto is actually stretching everything to the max, but it still looks nice.*/
 	margin-top: 2cm;
 	/* Chrome is not handling the background opacity correctly when printing: https://bugs.chromium.org/p/chromium/issues/detail?id=226137 */
 	/* background-color: rgba(255, 255, 255, 0.9); */
 	/* background-color: rgb(224, 222, 222); */ /* NEW: consider if we want to blend with background */
 	border: 0.2cm solid #400040;
-	/* box-shadow: 5px 5px 5px black; */ /* NEW: remove for clarity? */
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;  /* space between columns */
@@ -57,8 +56,6 @@ p, pre {
 	box-sizing: border-box;
 }
 
-
-
 pre {
 	min-width: 0;  /* Fixes a flexbox incompatibility for pre, per recommendation from http://stackoverflow.com/questions/32035406/how-to-limit-pre-tag-width-inside-flex-container */
 	font-size: 60%; /* This will likely need to be adjusted */
@@ -70,3 +67,10 @@ img {
 	background-color: white;  /* Eliminate transparency for consistency among all images */
 	border: 0.1cm solid black;  /* Address the lack of transparency with borders */
 }
+
+h3 {
+	flex: 100%;
+	margin: 0; /* FIXME */
+	/* automatic margins were too large, and margins from p, etc., take care of it nicely.  This results because flexbox does not collapse margins, unlike block-level formatting  */
+}
+

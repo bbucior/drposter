@@ -3,16 +3,22 @@
 /* Download fonts. @import must come before any rules in the document */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,700|Monda:400,700);
 
+:root {
+	--base-font-family: 'Roboto', sans-serif;
+	--header-font-family: 'Monda', sans-serif;
+	--header-color: #400040;
+}
+
 /* Font-sizes could also be set proportionally to the base html size */
 html {
 	/* Note that rem is set proportionally to the html root font size: https://css-tricks.com/html-vs-body-in-css/ */
-	font-family: 'Roboto', sans-serif;
+	font-family: var(--base-font-family);
 	font-size: 1cm;
 	line-height: 1.375; /* Use proportional line spacing so everything is self-consistent */
 }
 
-h1, h2:not(.author) {
-	font-family: 'Monda', sans-serif;
+h1, h2:not(.author), h3 {
+	font-family: var(--header-font-family);
 }
 
 h1, h2 {
@@ -28,19 +34,18 @@ h1, h2 {
 	font-size: 2.5cm;
 	line-height: 1.15;
 	margin-bottom: 0;
-	color: #400040;
+	color: var(--header-color);
+}
+
+.references {
+	font-size: 0.8em;
 }
 
 caption {
-	font-size: 0.6em;
 	font-size: inherit;
 }
 
 h3 {
-	flex: 100%;
-	font-family: 'Monda', sans-serif;
-	color: #400040;
+	color: var(--header-color);
 	font-size: 1.3em;
-	margin: 0; /* FIXME */
-	/* automatic margins were too large, and margins from p, etc., take care of it nicely.  This results because flexbox does not collapse margins, unlike block-level formatting  */
 }
