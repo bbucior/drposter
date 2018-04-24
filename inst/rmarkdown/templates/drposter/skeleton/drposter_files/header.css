@@ -12,7 +12,6 @@
 }
 
 .slides > header ol.affiliations {
-	font-size: 0.75em;
 	margin-top: 0.5em;
 	list-style-type: none;
 	counter-reset: institution-counter;

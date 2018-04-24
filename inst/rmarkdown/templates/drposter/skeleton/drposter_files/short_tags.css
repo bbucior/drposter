@@ -2,7 +2,7 @@
 
 a {
 	text-decoration: none;
-	color: inherit;  /* instead of blue/purple hyperlinks */
+	color: inherit;  /* text color instead of blue/purple hyperlinks */
 	font-family: monospace;
 }
 
@@ -48,7 +48,7 @@ sub {
 .qr {
 	box-sizing: border-box;
 	flex: 0 0 92%;
-	margin: auto auto 0 auto; /* Offset for emphasis */
+	margin: auto auto 0 auto; /* Offset by 8% for emphasis */
 }
 
 /* Prevent tables from being scrunched together */

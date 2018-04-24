@@ -9,29 +9,36 @@
 	flex: 1 1 auto;
 }
 
+:root {
+	--block-padding: 1cm;
+	--h2-height: 2em;
+}
+
 .slides .level2 h2 {
+	--h2-padding: var(--block-padding);
+	--h2-border-radius: var(--h2-padding);
 	width: 100%;
-	height: 2em;
-	line-height: calc(2em - 1cm); /* Subtract off padding from border-box */
+	height: var(--h2-height);
+	line-height: calc(2em - var(--h2-padding)); /* Subtract off padding from border-box */
 	vertical-align: middle;
 	color: white;
-	background: linear-gradient(to left, #800080, #400040);
-	border-radius: 1cm;
-	padding: 0.5cm 1cm;
+	background: linear-gradient(to left, var(--other-color-for-h2-gradient), var(--header-color));
+	border-radius: var(--h2-border-radius);
+	padding: calc(var(--h2-padding)/2) var(--h2-padding);
 	box-sizing: border-box;
-	margin: -1em auto 0 auto;
+	margin: calc(-1/2 * var(--h2-height)) auto 0 auto;  /* Move h2 into the center of the top border */
 }
 
 .slides .level2 { 
 	border-radius: 1cm;
-	padding: 0 1cm;
+	padding: 0 var(--block-padding);
 	box-sizing: border-box;
 	margin: 0.75cm;  /* This is actually what controls the spacing between content.  By default, the flex 1 1 auto is actually stretching everything to the max, but it still looks nice.*/
 	margin-top: 2cm;
 	/* Chrome is not handling the background opacity correctly when printing: https://bugs.chromium.org/p/chromium/issues/detail?id=226137 */
 	/* background-color: rgba(255, 255, 255, 0.9); */
 	/* background-color: rgb(224, 222, 222); */ /* NEW: consider if we want to blend with background */
-	border: 0.25cm solid #400040;
+	border: 0.25cm solid var(--header-color);
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;  /* space between columns */
@@ -75,7 +82,7 @@ h3 {
 	/* automatic margins were too large, and margins from p, etc., take care of it nicely.  This results because flexbox does not collapse margins, unlike block-level formatting  */
 }
 
-.autofullwidth, .fullwidth {  /* Not actually automatic any more */
+.fullwidth {
 	flex: 100%;
 }
 

@@ -6,7 +6,6 @@
 :root {
 	--base-font-family: 'Roboto', sans-serif;
 	--header-font-family: 'Monda', sans-serif;
-	--header-color: #400040;
 }
 
 /* Font-sizes could also be set proportionally to the base html size */
@@ -35,6 +34,10 @@ h1, h2 {
 	line-height: 1.15;
 	margin-bottom: 0;
 	color: var(--header-color);
+}
+
+.slides > header ol.affiliations {
+	font-size: 0.75em;
 }
 
 .references {
