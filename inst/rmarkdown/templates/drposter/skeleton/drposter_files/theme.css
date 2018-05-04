@@ -2,16 +2,14 @@
 
 :root {
 	--header-color: #400040;
-	--other-color-for-h2-gradient: #800080;  /* TODO: see if we can implement h2 banner by the solid color + an alpha gradient, maybe with an opacity=1 override? */
+	--other-color-for-h2-gradient: #800080;
 	/* We should really reconsider all of the whitespace using a single direction of margins, etc.  See these two helpful articles: https://css-tricks.com/margin-bottom-margin-top/ and https://alistapart.com/article/axiomatic-css-and-lobotomized-owls */
 }
 
 /* New todo list, for the next commit so everything's not all at once as a huge incomprehensible commit:
- * Document margins are underspecified because there's a margin around .section .level2 that adds to it.  The margin-top makes sense based on line heights but should be calculated appropriately, etc.
+ * The .section .level2 margin-top currently makes sense based on line heights but should be calculated appropriately, etc.
  * Continue using CSS variables to simplify specifications (and intent) for heights, spacing, distances, etc.
  * Is there a way to space the bullet points halfway closer to the content?  They're too close to the 1cm margin right now.
- * grid.css: fix the column spacing.  1.5cm?
- * page.css: overall page padding is wrong, and will need to be adjusted once the above comments on .level2 boxes are addressed
  * Note: systematically fixing issues with .level2 will make theming considerably easier.  Consider that you can disable most of the .level2 h2 styles and apply width=100%, border-bottom:solid black, and remove the .level2 border to get a totally minimalist poster relatively easy.  If you had a special class attached to the .level1 or .slides/theme, you could use a general descendent selector to automatically get theming support, then break up these details into separate theme files.  Note you could also use this to make a "real" poster to demonstrate the project like tikzposter, where you have different styles demo'd on the same example poster.
  * There's also some old code that should be moved to an examples.css for override examples for the template, since it doesn't belong cluttering the default style.  Then, everything will all be in a single place.
  * Documentation: explain the philosophy of organizing the project with a drposter_files/ subdirectory to give the user full control of which version of the CSS, etc., is employed.

@@ -8,7 +8,7 @@
 .slides {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
-	grid-column-gap: 0.5in;  /* gap between columns */
+	grid-column-gap: 1.5cm;  /* gap between columns */
 }
 
 /* Note: these classes are based on number of desired equal columns, not the fraction out of 12 */

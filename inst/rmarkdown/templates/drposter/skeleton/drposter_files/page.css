@@ -12,7 +12,7 @@ html {
 	margin: 0;
 	width: 841mm;
 	height: 1189mm;
-	padding: 1.5cm;  /* Overall document "margins" (while keeping the background, etc.) */
+	padding: 2.5cm;  /* Overall document "margins" (while keeping the background, etc.) */
 }
 
 @media screen {
