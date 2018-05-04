@@ -16,6 +16,7 @@ publish:
 github: ../../README.md
 
 drposter_files/drposter.css: ../rmarkdown/templates/drposter/skeleton/drposter_files/drposter.css
+	${RUN_R} -e 'devtools::install_local("../../../drposter")'; \
 	${RUN_R} -e 'drposter::drposter_update()'
 
 # Haven't gotten this automated yet.  At least manually converting from HTML to PDF is quick.
