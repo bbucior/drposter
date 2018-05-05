@@ -12,6 +12,7 @@
 :root {
 	--block-padding: 1cm;
 	--h2-height: 2em;
+	--bullet-spacing: calc(2/3 * var(--block-padding));
 }
 
 .slides .level2 h2 {
@@ -31,7 +32,7 @@
 
 .slides .level2 { 
 	border-radius: 1cm;
-	padding: 0 var(--block-padding);
+	padding: var(--block-padding);
 	box-sizing: border-box;
 	margin-top: 2cm;
 	margin-bottom: 0.75cm;  /* left over from an old style, margin: 0.75cm; which will probably get replaced once a margin direction is standardized */
@@ -59,7 +60,7 @@
 
 p, pre, ul, .figure {
 	flex: 45%;
-	padding: 0 0.3em;
+	/*padding: 0 0.3em;*/ /* TODO: remove all custom/individual styles like these to simplify spacing */
 	box-sizing: border-box;
 	margin: 1em 0;  /* Use the same spacing for flexbox contents */
 }
@@ -86,3 +87,15 @@ h3 {
 	flex: 100%;
 }
 
+/* Nudge the li bullet points closer to the content (partway into the padding) while keeping the text aligned */
+ul {
+	list-style-type: none;
+	margin-left: calc(-1 * var(--bullet-spacing));
+	padding-left: var(--bullet-spacing);  /* Allocate room within the ul block */
+}
+li::before {
+	content: "\2022";
+	display: inline-block;
+	margin-left: calc(-1 * var(--bullet-spacing));
+	width: var(--bullet-spacing);
+}
