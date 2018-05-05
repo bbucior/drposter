@@ -25,7 +25,6 @@ h1, h2 {
 }
 
 .author {
-	font-size: 1.4cm;
 	font-weight: normal;
 }
 
@@ -38,7 +37,7 @@ h1, h2 {
 }
 
 .slides > header ol.affiliations {
-	font-size: 0.75em;
+	font-size: 0.8em;
 }
 
 .references {

@@ -32,7 +32,7 @@
 
 .slides .level2 { 
 	border-radius: 1cm;
-	padding: var(--block-padding);
+	padding: 0 var(--block-padding);  /* Top/bottom is zero for fancy header margins, etc. */
 	box-sizing: border-box;
 	margin-top: 2cm;
 	margin-bottom: 0.75cm;  /* left over from an old style, margin: 0.75cm; which will probably get replaced once a margin direction is standardized */
