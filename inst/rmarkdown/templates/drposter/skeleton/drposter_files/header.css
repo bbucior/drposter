@@ -5,7 +5,7 @@
 	text-align: center;
 	width: 100%;
 	box-sizing: border-box;
-	padding: 0 1%;
+	padding: 0 var(--block-padding);  /* Preventing the header edges extending beyond the content, which would look strange */
 	/* If the background is a complex image, then an overlay may be necessary: */
 	/*background: lightgray;
 	background: linear-gradient(to bottom, lightgray, white);*/
@@ -42,6 +42,11 @@
 
 .slides > header ol.affiliations li {
 	display: inline-block;
+	margin-top: 0;  /* Avoids grabbing a huge h2 margin from the * + * rule */
+}
+
+.author {
+	margin-top: 1rem;
 }
 
 .presenter {

@@ -10,9 +10,10 @@
 }
 
 :root {
-	--block-padding: 1cm;
-	--h2-height: 2em;
+	--block-padding: 1rem;
+	--h2-height: 3rem;  /* 2 * h2 */
 	--bullet-spacing: calc(2/3 * var(--block-padding));
+	--inter-block-spacing: 1rem;
 }
 
 .slides .level2 h2 {
@@ -20,7 +21,6 @@
 	--h2-border-radius: var(--h2-padding);
 	width: 100%;
 	height: var(--h2-height);
-	line-height: calc(2em - var(--h2-padding)); /* Subtract off padding from border-box */
 	vertical-align: middle;
 	color: white;
 	background: linear-gradient(to left, var(--other-color-for-h2-gradient), var(--header-color));
@@ -31,11 +31,10 @@
 }
 
 .slides .level2 { 
-	border-radius: 1cm;
-	padding: 0 var(--block-padding);  /* Top/bottom is zero for fancy header margins, etc. */
+	border-radius: var(--block-padding);
+	padding: 0 var(--block-padding) var(--block-padding) var(--block-padding);
 	box-sizing: border-box;
-	margin-top: 2cm;
-	margin-bottom: 0.75cm;  /* left over from an old style, margin: 0.75cm; which will probably get replaced once a margin direction is standardized */
+	margin-top: calc(1/2 * var(--h2-height) + var(--inter-block-spacing));  /* Technically might need the border, too */
 	/* Chrome is not handling the background opacity correctly when printing: https://bugs.chromium.org/p/chromium/issues/detail?id=226137 */
 	/* background-color: rgba(255, 255, 255, 0.9); */
 	/* background-color: rgb(224, 222, 222); */ /* NEW: consider if we want to blend with background */
@@ -44,6 +43,10 @@
 	flex-flow: row wrap;
 	justify-content: space-between;  /* space between columns */
 	align-content: flex-start;
+}
+
+.level1 {
+	margin-top: 0;  /* These should only be pseudo-type structures to set up the grid; no intrinsic spacing */
 }
 
 .slides .level2:only-of-type {
@@ -60,14 +63,11 @@
 
 p, pre, ul, .figure {
 	flex: 45%;
-	/*padding: 0 0.3em;*/ /* TODO: remove all custom/individual styles like these to simplify spacing */
 	box-sizing: border-box;
-	margin: 1em 0;  /* Use the same spacing for flexbox contents */
 }
 
 pre {
 	min-width: 0;  /* Fixes a flexbox incompatibility for pre, per recommendation from http://stackoverflow.com/questions/32035406/how-to-limit-pre-tag-width-inside-flex-container */
-	font-size: 60%; /* This will likely need to be adjusted */
 }
 
 img {
@@ -79,8 +79,6 @@ img {
 
 h3 {
 	flex: 100%;
-	margin: 0; /* FIXME */
-	/* automatic margins were too large, and margins from p, etc., take care of it nicely.  This results because flexbox does not collapse margins, unlike block-level formatting  */
 }
 
 .fullwidth {
@@ -91,9 +89,9 @@ h3 {
 ul {
 	list-style-type: none;
 	margin-left: calc(-1 * var(--bullet-spacing));
-	padding-left: var(--bullet-spacing);  /* Allocate room within the ul block */
+	padding-left: var(--bullet-spacing);  /* Allocate room within the ul block for li::before to move left */
 }
-li::before {
+ul li::before {
 	content: "\2022";
 	display: inline-block;
 	margin-left: calc(-1 * var(--bullet-spacing));

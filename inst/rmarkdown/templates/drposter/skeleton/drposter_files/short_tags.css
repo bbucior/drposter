@@ -25,12 +25,8 @@ sub {
   top: 0.4em; 
 }
 
-.references p {
+.references div, .references p {
 	margin: 0;  /* avoid paragraph spaces between individual references, which are enclosed in paragraphs */
-}
-
-.references {
-	margin: 1em 0;  /* but have overall margins on the reference block */
 }
 
 .warning {
@@ -48,7 +44,7 @@ sub {
 .qr {
 	box-sizing: border-box;
 	flex: 0 0 92%;
-	margin: auto auto 0 auto; /* Offset by 8% for emphasis */
+	margin: 1em auto 0 auto; /* Offset by 8% for emphasis */
 }
 
 /* Prevent tables from being scrunched together */

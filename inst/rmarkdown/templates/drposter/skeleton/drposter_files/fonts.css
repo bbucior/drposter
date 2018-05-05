@@ -30,9 +30,6 @@ h1, h2 {
 
 .title {
 	font-size: 2.5cm;
-	line-height: 1.15;
-	margin-top: 0;
-	margin-bottom: 0;
 	color: var(--header-color);
 }
 
