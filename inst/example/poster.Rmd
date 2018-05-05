@@ -52,7 +52,7 @@ Ultimately, one of the main objectives of this project is to avoid manually twea
 <span class="warning">(<strong>Note:</strong> Over the next couple of weeks I will be making many updates to the package (while working on a poster).  CSS Grid support is now implemented, but some more reorganization is necessary.)</span>
 
 
-# {.col-2}
+# {.col-2 .theme-minimalist}
 
 ## Features
 
@@ -104,7 +104,7 @@ To avoid compatibility with future updates to the package, a copy of the templat
 * Organize CSS file by rule purpose and implement CSS variables
 * Affiliations: the author list is currently cobbled together and could use an alternative to the _ad hoc_ construction.  Possibly pandoc's footnote syntax or an author.affiliation field could help?
 
-## Community
+## Community {style="--header-color:darkred; --other-color-for-h2-gradient:red;"}
 
 <div class="fullwidth warning">
 This repository is under development and should be considered alpha-level software.  **Do not use it directly for academic or professional content without having a proper backup to fully compile your posters.**  The CSS classes and/or notation are not finalized and may break without warning.

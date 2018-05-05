@@ -1,14 +1,37 @@
-/* TODO: overall colors, etc., for the poster, once parts are rewritten with CSS variables */
+/* Overall colors, etc., for the poster, powered by CSS variables and the cascade */
 
 :root {
 	--header-color: #400040;
-	--other-color-for-h2-gradient: #800080;
 }
 
+/******** Default theme, including the background gradients ********/
+:root {
+	--other-color-for-h2-gradient: #800080;
+}
+/* TODO: consider adding the rest of the custom margins, etc., into this block to be better organized */
+
+
+/******** More minimalist theme using less ink ********/
+.theme-minimalist .level2 h2 {
+	background: none;
+	color: var(--header-color);
+	border-bottom: solid var(--header-color);
+	border-radius: 0;
+	padding: 0;
+	margin-top: 0;
+	/*height: auto;*/  /* Some rules like this won't be necessary once the default theme is separated into its own theme class */
+	line-height: 2em;
+}
+
+.theme-minimalist .level2 {
+	border: none;
+	margin-top: var(--inter-block-spacing);
+}
+
+
 /* New todo list, for the next commit so everything's not all at once as a huge incomprehensible commit:
- * Note: come back and check this point.  Systematically fixing issues with .level2 will make theming considerably easier.  Consider that you can disable most of the .level2 h2 styles and apply width=100%, border-bottom:solid black, and remove the .level2 border to get a totally minimalist poster relatively easy.  If you had a special class attached to the .level1 or .slides/theme, you could use a general descendent selector to automatically get theming support, then break up these details into separate theme files.  Note you could also use this to make a "real" poster to demonstrate the project like tikzposter, where you have different styles demo'd on the same example poster.
+ * Note the features for theming.  If you had a special class attached to the .level1 or .slides/theme, you could use a general descendent selector to automatically get theming support, then break up these details into separate theme files.  Note you could also use this to make a "real" poster to demonstrate the project like tikzposter, where you have different styles demo'd on the same example poster.
  * There's also some old code that should be moved to an examples.css for override examples for the template, since it doesn't belong cluttering the default style.  Then, everything will all be in a single place.
- * Documentation: explain the philosophy of organizing the project with a drposter_files/ subdirectory to give the user full control of which version of the CSS, etc., is employed.
  * Still consider embedding the default fonts (and maybe add a notice for users who want custom fonts), since they don't work offline.  The note in the license section could be something along the lines of "...and fonts under their respective licenses".  The trickiest part will be figuring out how the Google Fonts css imports these and best practices of what I should do with the ttf files.
  */
 

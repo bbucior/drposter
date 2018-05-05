@@ -17,7 +17,7 @@
 	--flex-gutter: calc(1/2 * var(--block-padding));
 }
 
-.slides .level2 h2 {
+.level2 h2 {
 	--h2-padding: var(--block-padding);
 	--h2-border-radius: var(--h2-padding);
 	width: 100%;
@@ -31,10 +31,11 @@
 	margin: calc(-1/2 * var(--h2-height)) var(--flex-gutter) 0 var(--flex-gutter);  /* Move h2 into the center of the top border */
 }
 
-.slides .level2 {
+.level2 {
 	--adj-padding-incl-margins: calc(var(--block-padding) - var(--flex-gutter));
 	/* This variable splits the interior spacing into the adjusted-margins + a flex-gutter, since we can't directly specify the gutter of flexbox items (the gutter margins spill out into the left and right) */
 	/* To test this calculation, try changing the --flex-gutter to a bigger fixed value, e.g. 2rem */
+	/* Mozilla confirms that there isn't a better way than margins currently to handle the flexbox spacing: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Mastering_Wrapping_of_Flex_Items#Creating_gutters_between_items */
 	border-radius: var(--block-padding);
 	padding: 0 var(--adj-padding-incl-margins) var(--block-padding) var(--adj-padding-incl-margins);
 	box-sizing: border-box;
@@ -53,7 +54,7 @@
 	margin-top: 0;  /* These should only be pseudo-type structures to set up the grid; no intrinsic spacing */
 }
 
-.slides .level2:only-of-type {
+.level2:only-of-type {
 	/* If there is only one block, stretch it, because there are no adjacent elements for space-between */
 	flex-grow: 1;
 }
