@@ -32,6 +32,5 @@
 /* New todo list, for the next commit so everything's not all at once as a huge incomprehensible commit:
  * Note the features for theming.  If you had a special class attached to the .level1 or .slides/theme, you could use a general descendent selector to automatically get theming support, then break up these details into separate theme files.  Note you could also use this to make a "real" poster to demonstrate the project like tikzposter, where you have different styles demo'd on the same example poster.
  * There's also some old code that should be moved to an examples.css for override examples for the template, since it doesn't belong cluttering the default style.  Then, everything will all be in a single place.
- * Still consider embedding the default fonts (and maybe add a notice for users who want custom fonts), since they don't work offline.  The note in the license section could be something along the lines of "...and fonts under their respective licenses".  The trickiest part will be figuring out how the Google Fonts css imports these and best practices of what I should do with the ttf files.
  */
 
