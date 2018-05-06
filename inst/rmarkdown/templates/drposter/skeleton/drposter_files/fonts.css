@@ -2,7 +2,7 @@
 
 /* Download fonts. @import must come before any rules in the document */
 /*@import url(https://fonts.googleapis.com/css?family=Roboto:400,700|Monda:400,700);*/
-@import url("./External/load_fonts.css");  /* Consider this local copy instead of online */
+@import url("./load_fonts.css");  /* Consider this local copy instead of online */
 
 :root {
 	--base-font-family: 'Roboto', sans-serif;
