@@ -18,17 +18,9 @@
 }
 
 .level2 h2 {
-	--h2-padding: var(--block-padding);
-	--h2-border-radius: var(--h2-padding);
 	width: 100%;
-	height: var(--h2-height);
 	vertical-align: middle;
-	color: white;
-	background: linear-gradient(to left, var(--other-color-for-h2-gradient), var(--header-color));
-	border-radius: var(--h2-border-radius);
-	padding: calc(var(--h2-padding)/2) var(--h2-padding);
 	box-sizing: border-box;
-	margin: calc(-1/2 * var(--h2-height)) var(--flex-gutter) 0 var(--flex-gutter);  /* Move h2 into the center of the top border */
 }
 
 .level2 {
@@ -36,11 +28,8 @@
 	/* This variable splits the interior spacing into the adjusted-margins + a flex-gutter, since we can't directly specify the gutter of flexbox items (the gutter margins spill out into the left and right) */
 	/* To test this calculation, try changing the --flex-gutter to a bigger fixed value, e.g. 2rem */
 	/* Mozilla confirms that there isn't a better way than margins currently to handle the flexbox spacing: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Mastering_Wrapping_of_Flex_Items#Creating_gutters_between_items */
-	border-radius: var(--block-padding);
 	padding: 0 var(--adj-padding-incl-margins) var(--block-padding) var(--adj-padding-incl-margins);
 	box-sizing: border-box;
-	margin-top: calc(1/2 * var(--h2-height) + var(--inter-block-spacing));  /* Technically might need the border, too */
-	border: 0.25cm solid var(--header-color);
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;  /* space between columns */
