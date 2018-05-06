@@ -6,9 +6,6 @@
 	width: 100%;
 	box-sizing: border-box;
 	padding: 0 var(--block-padding);  /* Preventing the header edges extending beyond the content, which would look strange */
-	/* If the background is a complex image, then an overlay may be necessary: */
-	/*background: lightgray;
-	background: linear-gradient(to bottom, lightgray, white);*/
 }
 
 .slides > header ol.affiliations {

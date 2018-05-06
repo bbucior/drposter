@@ -40,9 +40,6 @@
 	padding: 0 var(--adj-padding-incl-margins) var(--block-padding) var(--adj-padding-incl-margins);
 	box-sizing: border-box;
 	margin-top: calc(1/2 * var(--h2-height) + var(--inter-block-spacing));  /* Technically might need the border, too */
-	/* Chrome is not handling the background opacity correctly when printing: https://bugs.chromium.org/p/chromium/issues/detail?id=226137 */
-	/* background-color: rgba(255, 255, 255, 0.9); */
-	/* background-color: rgb(224, 222, 222); */ /* NEW: consider if we want to blend with background */
 	border: 0.25cm solid var(--header-color);
 	display: flex;
 	flex-flow: row wrap;
@@ -83,7 +80,6 @@ img {
 	width: 100%;  /* Make it fit inside the 2-column, etc, flexbox */
 	height: auto;
 	background-color: white;  /* Eliminate transparency for consistency among all images with non-white backgrounds */
-	/*border: 0.1cm solid black;*/  /* Address the lack of transparency with borders, which isn't necessary if the background is white */
 }
 
 .level2 h2, .level2 h3 {

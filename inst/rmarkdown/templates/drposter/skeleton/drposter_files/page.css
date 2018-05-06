@@ -37,13 +37,6 @@ body {
 /******** Poster background ********/
 
 html {
-	/* Also set up the background.  Eventually this will be a separate color/gradient section */
-	/* Old example of a circuit board */
-	/* background-color: #395831;
-	background: url("Resources/rotated-circuit-board.svg");
-	background-repeat: no-repeat; */
-	/*background: linear-gradient(to bottom, #eee9ee, white);*/ /* Can also do gradients, though that requires borders on the image which looks a bit cluttered */
-	background-size: cover;
 	background: white;
 }
 
