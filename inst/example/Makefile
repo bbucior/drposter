@@ -1,4 +1,4 @@
-.PHONY: publish github
+.PHONY: publish github css
 
 RUN_R = export R_LIBS_USER="C:/Users/${USER}/Documents/R/win-library/3.4" && Rscript --vanilla
 #WHICH_CHROME := "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
@@ -15,7 +15,7 @@ publish:
 	echo "Not yet implemented"
 github: ../../README.md
 
-drposter_files/drposter.css: ../rmarkdown/templates/drposter/skeleton/drposter_files/drposter.css
+css:
 	${RUN_R} -e 'devtools::install_local("../../../drposter")'; \
 	${RUN_R} -e 'drposter::drposter_update()'
 
@@ -24,7 +24,7 @@ drposter_files/drposter.css: ../rmarkdown/templates/drposter/skeleton/drposter_f
 #poster.pdf: poster.html
 #	${WHICH_CHROME} --headless --print-to-pdf=$@ $^
 
-poster.html: poster.Rmd drposter_files/drposter.css
+poster.html: poster.Rmd css
 	${RUN_R} -e 'rmarkdown::render("$<")'
 
 ../../README.md: poster.Rmd
