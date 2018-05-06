@@ -25,8 +25,8 @@ drposter_update <- function(verbose = TRUE) {
     backup_dir <- gsub(":", "-", backup_dir, fixed=TRUE)
     backup_dir <- paste0("backup-drposter-", backup_dir)
 
-    file.rename(lib_dir, backup_dir)
-    if (verbose) cat(paste("Generated a backup in", backup_dir, "\n"))
+    if (verbose) cat(paste("Generating a backup in", backup_dir, "\n"))
+    stopifnot(file.rename(lib_dir, backup_dir))  # Move the files, or raise an error upon failure
   }
 
   # Find installed drposter resources and overwrite lib_dir
@@ -36,5 +36,10 @@ drposter_update <- function(verbose = TRUE) {
     )
   rmarkdown::render_supporting_files(drposter_path, ".")
   if (verbose) cat(paste("Updated drposter package files into", lib_dir, "\n"))
+
+  # Save version information (with more detail than `packageVersion("drposter")`)
+  drposter_description <- system.file("DESCRIPTION", package="drposter")
+  rmarkdown::render_supporting_files(drposter_description, "drposter_files")
+
   invisible(NULL)
 }
