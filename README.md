@@ -1,42 +1,169 @@
 drposter: Generate Academic Posters in R Markdown and CSS
 ================
-<span class="presenter">Ben Bucior<sup>1</sup></span>, &lt;Your name here&gt;<sup>2</sup>
+<span class="presenter">Ben Bucior<sup>1</sup></span>, \<Your name
+here\><sup>2</sup>
+
 <ol class="affiliations">
+
 <li>
+
 Northwestern University, Evanston, IL, USA
+
 </li>
+
 <li>
+
 Earth
+
 </li>
+
 </ol>
 
 <!-- The name drposter came from a convoluted pun: it's a poster based on R, M.D. files (not a real doctor),
 and it also generates academic posters for PhD's and others. -->
 
-Overview
---------
+# 
 
-This template provides a framework to write posters in HTML/CSS using Rmarkdown. The code adapts the general markdown conventions of reveal.js slideshows,<sup>1–3</sup> allowing fast generation of posters that mostly separate content from presentation. The project README.md actually comes from the same Rmd as the poster, just set to the `rmarkdown::github_document` format. This documentation as a compiled poster is at <https://github.com/bbucior/drposter/tree/master/inst/example/poster.pdf>.
+<!-- Span the first column for four rows, that way we can capture the usage block, two rows of template examples, and refs/footer information -->
 
-Ultimately, one of the main objectives of this project is to avoid manually tweaking the spacing, element-by-element, of content in PowerPoint or another program. Instead, define the desired layout, page size, and other parameters get the spacing details automatically. <span class="warning">(<strong>Note:</strong> Over the next couple of weeks I will be making many updates to the package (while working on a poster). CSS Grid support is now implemented, but some more reorganization is necessary.)</span>
+## Overview
 
-Features
---------
+  - Template for writing HTML/CSS posters using Rmarkdown
+  - Same conventions as pandoc presentations
+    (e.g. reveal.js)<sup>1–3</sup>
+  - Separates content from presentation
+  - Goal: automatically get consistent spacing from specifications
+    instead of a manual layout
 
-Edit content in the \*.Rmd and poster.css files to write up your poster and style it. The poster output is best best viewed and "printed" in Chrome (limited testing has also been done in Firefox, but it doesn't yet apply experimental CSS rules for page size). The previewer built into standalone RStudio has difficulties with the layout CSS, so it is best to refresh the generated html file in a dedicated browser.
+<p style="text-align:center;">
 
-For now, the title section of the poster is automatically generated from the yaml header in the markdown file. Options for logos or other fields may be added later. By default, the poster is an A0 portrait size, but this is easily adapted at the top of the CSS file (and may gain user-friendly aliases later for size and orientation).
+![](../sticker/drposter.png)
 
-Currently, there are a few conventions to define the poster layout. Use level 1 sections (`#`) to denote main chunks of content, which are filled by row. Assigning a `{.col-x}` class, where `x` is 1--4, will set that chunk to use `1/x` of the width, using CSS Grid. The actual content goes inside of level 2 containers (`## Block title here`). There are also a few convenience classes, such as formatting a QR code block. The markdown source for the poster perhaps provides the best documentation by example.
+</p>
 
-The bibliography is now implemented using the pandoc features suggested by the relevant R markdown documentation<sup>4</sup>. A "references" div is required to place the references at a custom location before the end of the document<sup>5</sup>: see this example document for implementation. See also CSL resources<sup>6</sup> to automatically format references according to your field's conventions, using references specified in the Rmarkdown YAML header or bibtex.
+## Rmarkdown structure
 
-Reproducible research
----------------------
+<div class="fullwidth">
 
-As an rmarkdown template, this format makes it easy to include plots and other analysis directly generated in R. By default, the raw code is hidden. The following plot of `cars` data is the classic example from R Markdown skeleton files...
+See also the [source
+code](https://github.com/bbucior/drposter/tree/master/inst/example/poster.Rmd)
+and [compiled
+pdf](https://github.com/bbucior/drposter/tree/master/inst/example/poster.pdf)
+for this poster on Github.
 
-![](github_files/figure-markdown_github/unnamed-chunk-1-1.png)
+</div>
+
+    ---
+    title: Title of your document within R Markdown's YAML header
+    output: drposter::drposter_poster
+    ---
+    
+    # {.col-3}
+    ## Overall document columns (`<h1>`)
+    
+    Content is organized using headers as sections.  Level 1 sections
+    define the overall layout of subblocks.  Use the `.col-x` class to
+    use x columns for subblocks.
+    
+    ## Another left column block
+    
+    You can place multiple subblocks within the same overall .col-x,
+    for example to get a 3-column layout like this example code here.
+    
+    # {.col-3}
+    ## Individual content blocks (`<h2>`)
+    
+    Actual content goes within the level 2 blocks, which have two inner
+    columns by default, e.g. for figures.
+    
+    ![](path_to_figure.jpg)
+    
+    Most of the markdown commands seem to work, though there are
+    probably still some that are untested.
+    
+    # {.col-3}
+    ## Use this div to automatically write your references to a section:
+    
+    <div id="refs" class="references"></div>
+
+## Licensing
+
+### 3rd party
+
+  - R logo<sup>4</sup>: dual-licensed as CC-BY-SA 4.0 or GPL-2 by The R
+    Foundation (2016)
+  - Fonts under their respective licenses
+  - Package inspired by reveal.js presentation framework<sup>1</sup> and
+    its R package<sup>2</sup>
+  - Logo: thanks to Openclipart for the CC0 [graduation cap
+    image](https://openclipart.org/detail/244447/minimliast-graduation-hat),
+    [hexSticker](https://github.com/GuangchuangYu/hexSticker) for
+    sticker generation, and
+    [bcbioSmallRna](https://github.com/lpantano/bcbioSmallRna/blob/master/inst/sticker/sticker.R)
+    for a helpful sticker example
+
+### This package
+
+  - drposter may be used under different licenses at your option
+  - Entire R package: GPLv3 (like [R
+    markdown](https://github.com/rstudio/rmarkdown))
+  - Files for the [drposter pandoc
+    template](https://github.com/bbucior/drposter/tree/master/inst/rmarkdown/templates/drposter/skeleton/drposter_files):
+    same conditions as the official [pandoc
+    templates](https://github.com/jgm/pandoc/tree/master/data/templates)
+  - Poster CSS: [CC0 public
+    domain](https://creativecommons.org/publicdomain/zero/1.0/)
+
+## Community
+
+<p class="qr">
+
+![QR code](Resources/qr_code.png) For more information, please visit the
+project page at <https://github.com/bbucior/drposter>. Feel free to
+report issues, pull requests, or general comments on Github.
+
+</p>
+
+# 
+
+## How to use this package
+
+### Installation and updates
+
+1.  `devtools::install_github("bbucior/drposter", dep=FALSE)` (or
+    `install_local` on a downloaded copy) to install/update the package
+2.  In RStudio, you can find the format listed as a template under the
+    “New R Markdown” wizard, or use the command line.
+3.  Template files are cached in `drposter_files/` to decouple your
+    poster from the installed package version. Use `drposter_update` to
+    resync them.
+
+### Customizing the template
+
+  - Avoid modifying `drposter_files/`
+  - Indirectly override those rules in your own `custom.css` or
+    equivalent
+      - Easier to see and share your changes
+      - Decouples your modifications from the base drposter styles
+  - Customize the format of the bibliography<sup>5,6</sup> using a CSL
+    style<sup>7</sup>
+
+### Export
+
+  - View and “print as PDF” from Chrome<sup>8</sup>
+  - Be sure to save a PDF (and possibly html with `self_contained:
+    true`) to archive your project at the end, in case there are changes
+    in pandoc, rmarkdown, etc.
+  - You can also render the poster in other formats, such as a
+    `github_document` or `revealjs::revealjs_presentation`
+
+## Reproducible research
+
+### Directly include plots
+
+![](github_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+
+### Directly include stats
 
     ##      speed           dist       
     ##  Min.   : 4.0   Min.   :  2.00  
@@ -46,58 +173,91 @@ As an rmarkdown template, this format makes it easy to include plots and other a
     ##  3rd Qu.:19.0   3rd Qu.: 56.00  
     ##  Max.   :25.0   Max.   :120.00
 
-...along with the corresponding statistical summary.
+# 
 
-Images can also be loaded by file path using the standard Markdown syntax. For example, some figures, such as illustrations, may be easiest in other software or analysis from other software (or collaborators who use different tools). Other standard markdown commands should work out-of-the box, though their CSS styling has not yet been tested.
+## Customizable themes
 
-![](Resources/Rlogo.svg)
+Note the features for theming. If you had a special class attached to
+the .level1 or .slides/theme, you could use a general descendent
+selector to automatically get theming support, then break up these
+details into separate theme files.
 
-<!-- this will be the start of a new row -->
-Installation
-------------
+# 
 
-This package will be updated as I make new posters for research, but it's still a work in progress. Installation of this package is easy using the `devtools` package: simply run `devtools::install_github("bbucior/drposter", dep=FALSE)` or you can run `install_local` on a downloaded copy. After installation, the format will be available as an R Markdown template in the "New R Markdown" wizard.
+## Default theme
 
-To avoid compatibility with future updates to the package, a copy of the template and CSS are cached in a drposter\_files/ subdirectory next to the Rmd file. Use `drposter_update` to get the version from the currently installed version of the drposter package. Note that this approach will not be impervious to changes in the rmarkdown package, pandoc, etc., so you may also want to save the pandoc args, executable, etc. if it's a particularly important poster.
+This is an example of the default theme.
 
-Possible future directions
---------------------------
+# 
 
--   Implement several nice base poster styles similar to the tikzposter LaTeX class<sup>7</sup>, which provides full customization of the color palette, block styling, etc.
--   Organize CSS file by rule purpose and implement CSS variables
--   Affiliations: the author list is currently cobbled together and could use an alternative to the *ad hoc* construction. Possibly pandoc's footnote syntax or an author.affiliation field could help?
+## Minimalist theme
 
-Community
----------
+This is an example of the minimalist theme.
 
-This repository is under development and should be considered alpha-level software. **Do not use it directly for academic or professional content without having a proper backup to fully compile your posters.** The CSS classes and/or notation are not finalized and may break without warning.
+# 
 
-<p class="qr">
-![QR code](Resources/qr_code.png) For more information, please visit the project page at <https://github.com/bbucior/drposter>. Feel free to report issues, pull requests, or general comments on Github.
-</p>
+## See also
 
-References
-----------
+  - tikzposter latex template, and its example themes for inspiration
+    <https://bitbucket.org/surmann/tikzposter/downloads/>
+  - [Other R markdown
+    templates](https://gist.github.com/Pakillo/4854e5d760351206084f6be8abe476b2)
+    with their advantages/disadvantages (pdf compatibility, consistent
+    syntax with flexdashboard, etc.)
+
+## References
+
+<div id="refs" class="references">
+
+<div id="ref-revealjs">
 
 (1) <http://lab.hakim.se/reveal-js/#/>.
 
+</div>
+
+<div id="ref-rstudio-reveal">
+
 (2) <https://github.com/rstudio/revealjs>.
+
+</div>
+
+<div id="ref-mdformats">
 
 (3) <http://rmarkdown.rstudio.com/developer_custom_formats.html>.
 
-(4) <http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html>.
+</div>
 
-(5) <https://stackoverflow.com/questions/41532707/include-rmd-appendix-after-references>.
+<div id="ref-logo">
 
-(6) <https://github.com/citation-style-language/styles>.
+(4) <https://www.r-project.org/logo/>.
 
-(7) <https://www.ctan.org/pkg/tikzposter>.
+</div>
 
-(8) <https://www.r-project.org/logo/>.
+<div id="ref-rstudio-bib">
 
-License
--------
+(5)
+<http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html>.
 
-The R logo<sup>8</sup> is copyright 2016 The R Foundation and dual-licensed as CC-BY-SA 4.0 or GPL-2. This package is derived from the excellent reveal.js HTML presentation framework<sup>1</sup> and corresponding R package.<sup>2</sup>
+</div>
 
-This package may be used under multiple licenses. The entire R package may be used under GPLv3 (like [R markdown](https://github.com/rstudio/rmarkdown)). The [drposter pandoc template](https://github.com/bbucior/drposter/tree/master/inst/rmarkdown/templates/drposter/skeleton/drposter_files) files are also given under the same conditions as official [pandoc templates](https://github.com/jgm/pandoc/tree/master/data/templates), and the CSS is also released under [CC0 public domain](https://creativecommons.org/publicdomain/zero/1.0/).
+<div id="ref-stackoverflow-refs">
+
+(6)
+<https://stackoverflow.com/questions/41532707/include-rmd-appendix-after-references>.
+
+</div>
+
+<div id="ref-csl-github">
+
+(7) <https://github.com/citation-style-language/styles>.
+
+</div>
+
+<div id="ref-firefox-footnote">
+
+(8). *Limited testing shows that Firefox also works, but it doesn’t yet
+apply experimental CSS rules for page size.*
+
+</div>
+
+</div>

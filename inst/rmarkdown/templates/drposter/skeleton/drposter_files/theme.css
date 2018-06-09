@@ -28,7 +28,8 @@
 
 
 /******** More minimalist theme using less ink ********/
-.theme-minimalist .level2 h2 {
+.theme-minimalist .level2 h2, .level1 .theme-minimalist.level2 h2 {
+	/* This is really tricky: we need to completely override themes if accepted rule.  Inheritance will only work if things are actually specified */
 	background: none;
 	color: var(--header-color);
 	border-bottom: 0.25cm dotted var(--header-color);
@@ -39,7 +40,7 @@
 	line-height: 2em;
 }
 
-.theme-minimalist .level2 {
+.theme-minimalist .level2, .level1 .theme-minimalist.level2 {
 	border: none;
 	margin-top: var(--inter-block-spacing);
 }
