@@ -13,7 +13,7 @@ RUN_R = export R_LIBS_USER="C:/Users/${USER}/Documents/R/win-library/3.4" && Rsc
 #publish: github poster.pdf
 publish:
 	echo "Not yet implemented"
-github: ../../README.md
+github: ../../README.md ../../drposter.png
 
 css:
 	${RUN_R} -e 'devtools::install_local("../../../drposter")'; \
@@ -24,7 +24,7 @@ css:
 #poster.pdf: poster.html
 #	${WHICH_CHROME} --headless --print-to-pdf=$@ $^
 
-poster.html: poster.Rmd css
+poster.html: poster.Rmd css drposter.png
 	${RUN_R} -e 'rmarkdown::render("$<")'
 
 ../../README.md: poster.Rmd
@@ -32,6 +32,12 @@ poster.html: poster.Rmd css
 	rm github.html; \
 	rm -r github_files; \
 	mv github.md $@
+
+../../drposter.png: ../sticker/drposter.png
+	cp $< $@
+
+drposter.png: ../sticker/drposter.png
+	cp $< $@
 
 # In theory, we could also convert the poster to a presentation in one line of code.
 # Though the content size and organization will not likely fit well with the presentation,

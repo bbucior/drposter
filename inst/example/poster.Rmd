@@ -57,7 +57,7 @@ and it also generates academic posters for PhD's and others. -->
 * Goal: automatically get consistent spacing from specifications instead of a manual layout
 
 <p style="text-align:center;">
-![](../sticker/drposter.png){style="width:60%;"}
+![](drposter.png){style="width:60%;"}
 </p>
 
 

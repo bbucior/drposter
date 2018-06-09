@@ -37,7 +37,7 @@ and it also generates academic posters for PhD's and others. -->
 
 <p style="text-align:center;">
 
-![](../sticker/drposter.png)
+![](drposter.png)
 
 </p>
 
