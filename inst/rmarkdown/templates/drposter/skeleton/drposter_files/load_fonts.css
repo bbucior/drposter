@@ -1,0 +1,55 @@
+/* Loads local versions of fonts to remove the project's internet connection dependency */
+/* Adapted from Google Fonts and https://github.com/majodev/google-webfonts-helper */
+/* We could use WOFF2 or other formats, but ttf is also pretty easy */
+
+/* Roboto (body, default) */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'),
+       url('./External/Roboto-Regular.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Roboto Italic'), local('Roboto-Italic'),
+       url('./External/Roboto-Italic.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'),
+       url('./External/Roboto-Bold.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'),
+       url('./External/Roboto-Bold.ttf') format('truetype')
+}
+
+
+/* Monda (headers) */
+@font-face {
+  font-family: 'Monda';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Monda Regular'), local('Monda-Regular'),
+       url('./External/Monda-Regular.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'Monda';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Monda Bold'), local('Monda-Bold'),
+       url('./External/Monda-Bold.ttf') format('truetype')
+}
+

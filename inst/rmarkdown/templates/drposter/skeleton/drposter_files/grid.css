@@ -1,0 +1,29 @@
+/* Overall grid layout for the poster */
+
+/* Let's set up the grid to be similar to bootstrap, where there are 12 equal columns which are combined via .col-x classes, e.g. .col-6 for half of the width */
+/* See https://css-tricks.com/things-ive-learned-css-grid-layout/ and https://hacks.mozilla.org/2017/04/replace-bootstrap-layouts-with-css-grid/ for inspiration */
+/* See also https://css-tricks.com/snippets/css/complete-guide-grid/ and https://gridbyexample.com/examples/ for general help */
+/* The presentation [CSS Grid Changes Everything](https://www.youtube.com/watch?v=txZq7Laz7_4) is also inspirational. */
+
+.slides {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-column-gap: 1.5cm;  /* gap between columns */
+}
+
+/* Note: these classes are based on number of desired equal columns, not the fraction out of 12 */
+.slides .col-1 {
+	grid-column: span 12;
+}
+
+.slides .col-2 {
+	grid-column: span 6;
+}
+
+.slides .col-3 {
+	grid-column: span 4;
+}
+
+.slides .col-4 {
+	grid-column: span 3;
+}

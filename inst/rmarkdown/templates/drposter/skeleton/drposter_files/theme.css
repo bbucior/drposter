@@ -1,0 +1,47 @@
+/* Overall colors, etc., for the poster, powered by CSS variables and the cascade */
+
+:root {
+	--header-color: #400040;
+}
+
+/******** Default theme, including the background gradients ********/
+:root {
+	--other-color-for-h2-gradient: #800080;
+}
+
+.level2 h2 {
+	--h2-padding: var(--block-padding);
+	--h2-border-radius: var(--h2-padding);
+	height: var(--h2-height);
+	color: white;
+	background: linear-gradient(to left, var(--other-color-for-h2-gradient), var(--header-color));
+	border-radius: var(--h2-border-radius);
+	padding: calc(var(--h2-padding)/2) var(--h2-padding);
+	margin: calc(-1/2 * var(--h2-height)) var(--flex-gutter) 0 var(--flex-gutter);  /* Move h2 into the center of the top border */
+}
+
+.level2 {
+	border-radius: var(--block-padding);
+	margin-top: calc(1/2 * var(--h2-height) + var(--inter-block-spacing));  /* Technically might need the border, too */
+	border: 0.25cm solid var(--header-color);
+}
+
+
+/******** More minimalist theme using less ink ********/
+.theme-minimalist .level2 h2, .level1 .theme-minimalist.level2 h2 {
+	/* This is really tricky: we need to completely override themes if accepted rule.  Inheritance will only work if things are actually specified */
+	background: none;
+	color: var(--header-color);
+	border-bottom: 0.25cm dotted var(--header-color);
+	border-radius: 0;
+	padding: 0;
+	margin-top: 0;
+	/*height: auto;*/  /* Some rules like this won't be necessary once the default theme is separated into its own theme class */
+	line-height: 2em;
+}
+
+.theme-minimalist .level2, .level1 .theme-minimalist.level2 {
+	border: none;
+	margin-top: var(--inter-block-spacing);
+}
+

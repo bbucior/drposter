@@ -1,0 +1,57 @@
+/* Page setup for the overall poster */
+
+/* reveal.js:536 sets it as @page{size:'+ pageWidth +'px '+ pageHeight +'px; margin: 0;} */
+/* Google Chrome recognizes this keyword, but not yet in Firefox (so PDF settings must be manually specified) */
+/* See draft spec information at https://developer.mozilla.org/en-US/docs/Web/CSS/@page/size */
+@page {
+	size: 841mm 1189mm;  /* A0 paper for now */
+	margin: 0;
+}
+
+html {
+	margin: 0;
+	width: 841mm;
+	height: 1189mm;
+	padding: 2.5cm;  /* Overall document "margins" (while keeping the background, etc.) */
+}
+
+@media screen {
+	html {
+		zoom: 0.33;
+		margin: auto;
+	}
+}
+
+body {
+	margin: 0;
+	height: inherit;
+	-webkit-print-color-adjust: exact;  /* Enable background printing in Chrome: http://stackoverflow.com/questions/3893986/css-media-print-issues-with-background-color */
+}
+
+.slides.fill_page {
+	/* Space the content to fill the entire poster, if the fill_page variable is set */
+	align-content: space-between;
+	height: inherit;  /* Through a series of steps, height eventually inherits from the html page size */
+}
+
+/******** Poster background ********/
+
+html {
+	background: white;
+}
+
+/******** General poster spacing ********/
+
+/* Apply whitespace using a single direction of margins, etc.  See these two helpful articles: https://css-tricks.com/margin-bottom-margin-top/ and https://alistapart.com/article/axiomatic-css-and-lobotomized-owls */
+* {
+	margin: 0;
+}
+
+* + * {
+	/*margin-top: 1.5em;*/
+	margin-top: 1em;
+}
+
+li + li , li > ul, li > ol {
+	margin-top: 0;
+}

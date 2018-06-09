@@ -1,0 +1,54 @@
+/* Short, specific styles for specialized classes and tags */
+
+a {
+	text-decoration: none;
+	color: inherit;  /* text color instead of blue/purple hyperlinks */
+	font-family: monospace;
+}
+
+a::before {
+	content: "<"
+}
+
+a::after {
+	content: ">"
+}
+
+/* Adapted from Chris Coyier: https://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/ */
+sup, sub, .cite {
+	vertical-align: baseline;
+	position: relative;
+	top: -0.4em;
+	font-size: 0.8em;
+}
+sub { 
+  top: 0.4em; 
+}
+
+.references div, .references p {
+	margin: 0;  /* avoid paragraph spaces between individual references, which are enclosed in paragraphs */
+}
+
+.warning {
+	color: red;
+}
+
+/* special QR code handling */
+[alt="QR code"] {
+	width: 5cm;
+	float: left;
+	margin-right: 1.5cm;
+	border: none;
+}
+
+.qr {
+	box-sizing: border-box;
+	flex: 0 0 92%;
+	margin: 1em auto 0 auto; /* Offset by 8% for emphasis */
+}
+
+/* Prevent tables from being scrunched together */
+td, th {
+	padding: 0.2em 0.5em;
+	vertical-align: top;
+}

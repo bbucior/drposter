@@ -1,0 +1,51 @@
+/* Poster title/header block */
+
+.slides > header {
+	grid-column: span 12;  /* full width of the poster */
+	text-align: center;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 var(--block-padding);  /* Preventing the header edges extending beyond the content, which would look strange */
+}
+
+.slides > header ol.affiliations {
+	margin-top: 0.5em;
+	list-style-type: none;
+	counter-reset: institution-counter;
+}
+
+.slides > header ol.affiliations li:before {
+	content: counter(institution-counter);  /* Comment out this line if there is only one institution */
+	counter-increment: institution-counter;
+	/* Superscripting copied from .cite at bottom */
+	vertical-align: baseline;
+	position: relative;
+	top: -0.4em;
+	right: -0.25em;
+	font-size: 0.8em;
+}
+
+.slides > header ol.affiliations li:after {
+	/* Get glyph information from https://css-tricks.com/snippets/html/glyphs/ */
+	content: "\2022";
+	padding: 0 0.3em 0 0.5em;  /* Not sure why the li formatting is inconsistent */
+}
+
+.slides > header ol.affiliations li:nth-child(2n+2):after, .reveal .slides > header ol.affiliations li:last-child:after {
+	content: none;
+	padding: 0;
+} /* I had six affiliations in my original poster.  Added the last-child rule for the demo */
+
+
+.slides > header ol.affiliations li {
+	display: inline-block;
+	margin-top: 0;  /* Avoids grabbing a huge h2 margin from the * + * rule */
+}
+
+.author {
+	margin-top: 1rem;
+}
+
+.presenter {
+	font-weight: bold;
+}

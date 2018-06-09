@@ -1,0 +1,52 @@
+/* Default fonts and colors for drposter */
+
+/* Download fonts. @import must come before any rules in the document */
+/*@import url(https://fonts.googleapis.com/css?family=Roboto:400,700|Monda:400,700);*/
+@import url("./load_fonts.css");  /* Consider this local copy instead of online */
+
+:root {
+	--base-font-family: 'Roboto', sans-serif;
+	--header-font-family: 'Monda', sans-serif;
+}
+
+/* Font-sizes could also be set proportionally to the base html size */
+html {
+	/* Note that rem is set proportionally to the html root font size: https://css-tricks.com/html-vs-body-in-css/ */
+	font-family: var(--base-font-family);
+	font-size: 1cm;
+	line-height: 1.375; /* Use proportional line spacing so everything is self-consistent */
+}
+
+h1, h2:not(.author), h3 {
+	font-family: var(--header-font-family);
+}
+
+h1, h2 {
+	font-size: 1.5cm;
+}
+
+.author {
+	font-weight: normal;
+}
+
+.title {
+	font-size: 2.5cm;
+	color: var(--header-color);
+}
+
+.slides > header ol.affiliations {
+	font-size: 0.8em;
+}
+
+.references {
+	font-size: 0.8em;
+}
+
+caption {
+	font-size: inherit;
+}
+
+h3 {
+	color: var(--header-color);
+	font-size: 1.3em;
+}

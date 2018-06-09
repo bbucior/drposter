@@ -1,0 +1,36 @@
+/* Examples of how to customize the template, e.g. in your custom.css file */
+/* None of these styles are loaded within drposter.css.  This file is purely for documentation and brainstorming. */
+
+
+html {
+	/* Custom poster backgrounds */
+	background-color: #395831;
+	/* One option is an overall background gradient */
+	background: linear-gradient(to bottom, #eee9ee, white);
+	/* Alternatively, here is the old example of a circuit board as the background image */
+	background: url("Resources/rotated-circuit-board.svg");  /* Path to svg resource */
+	background-repeat: no-repeat;
+	background-size: cover;
+	/* See below for other considerations when using custom backgrounds other than solid white */
+}
+
+.slides > header {
+	/* If the background is a complex image, then an overlay may be necessary: */
+	background: lightgray;
+	background: linear-gradient(to bottom, lightgray, white);  /* Overwrites the previous style */
+	border-radius: var(--block-padding);
+	border: 0.25cm solid var(--header-color);
+}
+
+
+.level2 {
+	/* Chrome is not handling the background opacity correctly when printing: https://bugs.chromium.org/p/chromium/issues/detail?id=226137 */
+	/* background-color: rgba(255, 255, 255, 0.9); */
+	background-color: rgb(224, 222, 222);
+}
+
+img {
+	/* Address the lack of transparency with borders, which isn't necessary if the background is white */
+	border: 0.1cm solid black;
+}
+

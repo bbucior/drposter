@@ -1,0 +1,93 @@
+/* Layout of subsection boxes and their contents */
+
+/* An h1 section layout block (grid item) can contain multiple h2 poster blocks that are automatically spaced */
+/* The header does not have the class .section, so it will not be selected by this rule */
+.slides > .section {
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+	flex: 1 1 auto;
+}
+
+:root {
+	--block-padding: 1rem;
+	--h2-height: 3rem;  /* 2 * h2 */
+	--bullet-spacing: calc(2/3 * var(--block-padding));
+	--inter-block-spacing: 1rem;
+	--flex-gutter: calc(1/2 * var(--block-padding));
+}
+
+.level2 h2 {
+	width: 100%;
+	vertical-align: middle;
+	box-sizing: border-box;
+}
+
+.level2 {
+	--adj-padding-incl-margins: calc(var(--block-padding) - var(--flex-gutter));
+	/* This variable splits the interior spacing into the adjusted-margins + a flex-gutter, since we can't directly specify the gutter of flexbox items (the gutter margins spill out into the left and right) */
+	/* To test this calculation, try changing the --flex-gutter to a bigger fixed value, e.g. 2rem */
+	/* Mozilla confirms that there isn't a better way than margins currently to handle the flexbox spacing: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Mastering_Wrapping_of_Flex_Items#Creating_gutters_between_items */
+	padding: 0 var(--adj-padding-incl-margins) var(--block-padding) var(--adj-padding-incl-margins);
+	box-sizing: border-box;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;  /* space between columns */
+	align-content: flex-start;
+}
+
+.level1 {
+	margin-top: 0;  /* These should only be pseudo-type structures to set up the grid; no intrinsic spacing */
+}
+
+.level2:only-of-type {
+	/* If there is only one block, stretch it, because there are no adjacent elements for space-between */
+	flex-grow: 1;
+}
+
+.level1 h1 {
+	/* An h1 tag is still generated when using # {.col-2}, etc. specification for a block. */
+	/* For now, let's ignore these h1 tags, but later these could be stylized for overall section headings, etc. */
+	/* It might also be interesting to set the background-color of the section, which is a .level1 block */
+	display: none;
+}
+
+.level2 > * {
+	/* p, pre, ul, .figure, etc. */
+	/* flex-grow=1 and flex-shrink=0 by default, so this will expand to fill whitespace */
+	flex: 40%;  /* This is set to be two-column: enough leeway for the gutter but not too much for 3 cols */
+	box-sizing: border-box;
+	margin-left: var(--flex-gutter);
+	margin-right: var(--flex-gutter);
+}
+
+pre {
+	min-width: 0;  /* Fixes a flexbox incompatibility for pre, per recommendation from http://stackoverflow.com/questions/32035406/how-to-limit-pre-tag-width-inside-flex-container */
+}
+
+img {
+	width: 100%;  /* Make it fit inside the 2-column, etc, flexbox */
+	height: auto;
+	background-color: white;  /* Eliminate transparency for consistency among all images with non-white backgrounds */
+}
+
+.level2 h2, .level2 h3 {
+	flex: 100%;
+}
+
+.fullwidth {
+	flex: 100%;
+}
+
+/* Nudge the li bullet points closer to the content (partway into the padding) while keeping the text aligned */
+.level2 ul {
+	list-style-type: none;
+	margin-left: calc(-1 * var(--bullet-spacing) + var(--flex-gutter));
+	padding-left: var(--bullet-spacing);  /* Allocate room within the ul block for li::before to move left */
+}
+ul li::before {
+	content: "\2022";
+	display: inline-block;
+	margin-left: calc(-1 * var(--bullet-spacing));
+	width: var(--bullet-spacing);
+}
