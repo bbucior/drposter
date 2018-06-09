@@ -52,6 +52,6 @@ html {
 	margin-top: 1em;
 }
 
-li + li {
+li + li , li > ul, li > ol {
 	margin-top: 0;
 }

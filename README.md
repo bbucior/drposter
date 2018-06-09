@@ -90,17 +90,18 @@ for this poster on Github.
 
 ### 3rd party
 
-  - R logo<sup>4</sup>: dual-licensed as CC-BY-SA 4.0 or GPL-2 by The R
-    Foundation (2016)
-  - Fonts under their respective licenses
   - Package inspired by reveal.js presentation framework<sup>1</sup> and
     its R package<sup>2</sup>
+  - Fonts under their respective licenses
   - Logo: thanks to Openclipart for the CC0 [graduation cap
     image](https://openclipart.org/detail/244447/minimliast-graduation-hat),
     [hexSticker](https://github.com/GuangchuangYu/hexSticker) for
     sticker generation, and
     [bcbioSmallRna](https://github.com/lpantano/bcbioSmallRna/blob/master/inst/sticker/sticker.R)
     for a helpful sticker example
+  - See [CitationStyles.org](https://citationstyles.org/) and the CSL
+    project<sup>4</sup> for more info about citation options (CC BY SA
+    3.0)
 
 ### This package
 
@@ -146,11 +147,12 @@ report issues, pull requests, or general comments on Github.
       - Easier to see and share your changes
       - Decouples your modifications from the base drposter styles
   - Customize the format of the bibliography<sup>5,6</sup> using a CSL
-    style<sup>7</sup>
+    style<sup>4</sup>
 
 ### Export
 
-  - View and “print as PDF” from Chrome<sup>8</sup>
+  - View and “print as PDF” from Chrome<sup>7</sup>
+    <!-- Note: the footnote used to be a bibtex "note," but the default ACS template doesn't include that field -->
   - Be sure to save a PDF (and possibly html with `self_contained:
     true`) to archive your project at the end, in case there are changes
     in pandoc, rmarkdown, etc.
@@ -227,9 +229,9 @@ This is an example of the minimalist theme.
 
 </div>
 
-<div id="ref-logo">
+<div id="ref-csl-github">
 
-(4) <https://www.r-project.org/logo/>.
+(4) <https://github.com/citation-style-language/styles>.
 
 </div>
 
@@ -247,15 +249,9 @@ This is an example of the minimalist theme.
 
 </div>
 
-<div id="ref-csl-github">
-
-(7) <https://github.com/citation-style-language/styles>.
-
-</div>
-
 <div id="ref-firefox-footnote">
 
-(8). *Limited testing shows that Firefox also works, but it doesn’t yet
+(7) *Limited testing shows that Firefox also works, but it doesn’t yet
 apply experimental CSS rules for page size.*
 
 </div>
