@@ -52,6 +52,18 @@ html {
 	margin-top: 1em;
 }
 
+/* There are a few exceptions to the generic top-margin */
+
 li + li , li > ul, li > ol {
 	margin-top: 0;
 }
+
+/* Exclude mathjax which has custom HTML tags, and doesn't fit with the generic spacing */
+[class^="mjx-"] {
+	margin-top: 0;
+}
+/* Also override the custom margins of "display equations" since they're already governed by an enclosing block of some sort, like a paragraph */
+.MJXc-display {
+	margin: 0 !important;
+}
+
