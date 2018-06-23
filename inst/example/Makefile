@@ -1,28 +1,27 @@
-.PHONY: publish github css
+.PHONY: publish gh css
 
 RUN_R = export R_LIBS_USER="C:/Users/${USER}/Documents/R/win-library/3.4" && Rscript --vanilla
-#WHICH_CHROME := "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+WHICH_CHROME := "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
 
 # Automatically compile example poster and other templates
 # A few things need to be set up first:
 # 1. Verify that R can find the path to the user library, e.g. the R_LIBS_USER line above.
 # 2. Installing the drposter library
-# 3. Downloading the appropriate CSL file, e.g. ACS
-# 4. Setting a path to Google Chrome, as $WHICH_CHROME
+# 3. Setting a path to Google Chrome, as $WHICH_CHROME
+# Currently this Makefile is set up to run in Cygwin, especially the poster.pdf paths
 
-#publish: github poster.pdf
-publish:
-	echo "Not yet implemented"
-github: ../../README.md ../../drposter.png
+publish: gh poster.pdf
+gh: ../../README.md ../../drposter.png
 
 css:
 	${RUN_R} -e 'devtools::install_local("../../../drposter")'; \
 	${RUN_R} -e 'drposter::drposter_update()'
 
-# Haven't gotten this automated yet.  At least manually converting from HTML to PDF is quick.
-# This crashes without writing the output file.
-#poster.pdf: poster.html
-#	${WHICH_CHROME} --headless --print-to-pdf=$@ $^
+# Converting files to absolute Windows paths to get Chrome to work in Cygwin
+poster.pdf: poster.html
+	echo "WARNING: Check that the fonts exported correctly in the PDF."; \
+	echo "Sometimes the PDF export from headless Chrome is excluding the Roboto font."; \
+	${WHICH_CHROME} --headless --disable-gpu --print-to-pdf=$$(cygpath -w $$PWD/$@) $$(cygpath -w $$PWD/$^)
 
 poster.html: poster.Rmd css drposter.png
 	${RUN_R} -e 'rmarkdown::render("$<")'
