@@ -7,6 +7,7 @@
 :root {
 	--base-font-family: 'Roboto', sans-serif;
 	--header-font-family: 'Monda', sans-serif;
+	--monospace-font-family: 'Roboto Mono', monospace, sans-serif;
 }
 
 /* Font-sizes could also be set proportionally to the base html size */
@@ -49,4 +50,13 @@ caption {
 h3 {
 	color: var(--header-color);
 	font-size: 1.3em;
+}
+
+tt, code, kbd, samp, pre, xmp, plaintext, listing {
+	/* Default monospace tags from Chrome */
+	font-family: var(--monospace-font-family);
+}
+
+a {
+	font-family: var(--monospace-font-family);
 }
