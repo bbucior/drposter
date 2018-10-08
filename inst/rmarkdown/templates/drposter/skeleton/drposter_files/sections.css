@@ -71,6 +71,18 @@ img {
 	background-color: white;  /* Eliminate transparency for consistency among all images with non-white backgrounds */
 }
 
+p {
+	max-width: 100%;  /* Prevent paragraphs overflowing the flexbox container */
+}
+
+a {
+	/* Break long URLs into multiple lines.  Alternatively, specify break-all to
+	immediately place the line break instead of first trying to keep it on a newline.
+	This style is currently ignored in Firefox, which already handles URL line breaks.
+	See also https://developer.mozilla.org/en-US/docs/Web/CSS/word-break */
+	word-break: break-word;
+}
+
 .level2 h2, .level2 h3 {
 	flex: 100%;
 }
