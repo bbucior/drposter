@@ -14,6 +14,14 @@ a::after {
 	content: ">"
 }
 
+/* Undo angle brackets in RMarkdown code blocks, which have automatic anchors */
+code a::before {
+	content: none;
+}
+code a::after {
+	content: none;
+}
+
 /* Adapted from Chris Coyier: https://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/ */
 sup, sub, .cite {
 	vertical-align: baseline;

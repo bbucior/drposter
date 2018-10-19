@@ -34,3 +34,15 @@ img {
 	border: 0.1cm solid black;
 }
 
+
+/* Changing the size of executable code, if you want to include a lot of code but want it smaller */
+code {
+	font-size: 0.75em;
+}
+code.sourceCode {
+	white-space: pre-wrap;
+}
+div.sourceCode {
+	line-height: 1.1;  /* Can't be set in a.sourceLine because it has to take effect on the parent pre, not its contents */
+}
+

@@ -58,6 +58,14 @@ li + li , li > ul, li > ol {
 	margin-top: 0;
 }
 
+img + .caption {  /* e.g. from ![caption goes here](path_to_fig.png) */
+	margin-top: 0;
+}
+
+code a+a {  /* Between lines of executable code, e.g. ```{json} */
+	margin-top: 0;
+}
+
 /* Exclude mathjax which has custom HTML tags, and doesn't fit with the generic spacing */
 [class^="mjx-"] {
 	margin-top: 0;
