@@ -18,9 +18,9 @@
 #' A temporary profile directory is required to launch headless Chrome as a separate
 #' instance than any currently open windows, else the command line flags will not
 #' take effect.
-#' 
+#'
 #' This implementation uses code from the pagedown, decapitated, and xfun packages.
-#' 
+#'
 #' @references
 #' \url{https://developers.google.com/web/updates/2017/04/headless-chrome}
 #' \url{https://askubuntu.com/questions/35392/how-to-launch-a-new-instance-of-google-chrome-from-the-command-line}
@@ -45,22 +45,26 @@ chrome_pdf <- function(
   if (!is_html(html_path)) stop(
     "The file '", html_path, "' should have the '.html' or '.htm' extension."
   )
-  
+
   if (!file.exists(html_path)) {
     stop("The input file '", html_path, "' does not exist.")
   }
-  
+
+  # Need to use absolute paths on Windows or Chrome will have trouble finding the files
+  html_path <- normalizePath(html_path)
+
   # Also set up the temporary directory
   # check that work_dir does not exist because it will be deleted at the end
   if (dir.exists(temp_dir)) stop('The directory ', temp_dir, ' already exists.')
   temp_dir = normalizePath(temp_dir, mustWork = FALSE)
   on.exit(unlink(temp_dir, recursive = TRUE), add = TRUE)
-  
+
   if (is.null(pdf_path)) {
     base_html_name <- tools::file_path_sans_ext(html_path)
     pdf_path <- paste0(base_html_name, ".pdf")
   }
-  
+  pdf_path <- normalizePath(pdf_path, mustWork = FALSE)
+
   # Run Chrome headless, adapted from decapitated::chrome_dump_pdf()
   args <- c("--headless")
   # Apparently, both decapitated and pagedown disable the sandbox for Windows
@@ -78,11 +82,11 @@ chrome_pdf <- function(
   # Waiting for page load is a [difficult problem](https://github.com/GoogleChrome/puppeteer/issues/338) and known issue in scripted/headless Chrome.
   # In part, the difficulty arises from Chrome trying to [print as soon as the page is ready](https://github.com/chromium/chromium/blob/0fb6097de7a555a77a69f8e239f98f938c72c2f8/headless/app/headless_shell.cc).
   # For more background, see also [headless Chrome documentation](https://developers.google.com/web/updates/2017/04/headless-chrome) and a [list of Chromium command line switches](https://peter.sh/experiments/chromium-command-line-switches/).
-  args <- c(args, sprintf("-virtual-time-budget=%s", 10000))
-  
+  args <- c(args, sprintf("--virtual-time-budget=%s", 10000))
+
   args <- c(args, sprintf("--print-to-pdf=%s", pdf_path))
   args <- c(args, html_path)
-  
+
   processx::run(
     command = browser_bin,
     args = args,
@@ -90,7 +94,7 @@ chrome_pdf <- function(
     echo_cmd = FALSE,
     echo = FALSE
   ) -> res
-  
+
   invisible(pdf_path)
 }
 
@@ -101,7 +105,7 @@ chrome_pdf <- function(
 #' it returns a hard-coded path of Chrome under \file{/Applications}. On Linux,
 #' it searches for \command{chromium-browser} and \command{google-chrome} from
 #' the system's \var{PATH} variable.
-#' 
+#'
 #' Copied from rstudio/pagedown:chrome.R (MIT licensed) with a minor tweak to
 #' remove the dependency on xfun (using yihui/xfun/os.R)
 #' @return A character string.
