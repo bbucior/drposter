@@ -11,6 +11,10 @@
 #'   the user's home (e.g. ~/temp_drposter) may work better
 #' @param browser_bin Path to run Google Chrome.  If unspecified, drposter will
 #'   automatically search common installation paths for your current OS.
+#' @param timeout Number of seconds before cancelling document generation.
+#'   Use a larger value if the document needs longer to build for some reason.
+#'   Inspired by the flag from rstudio/pagedown:chrome.R.
+#' @param echo_cmd Whether to print the Chrome command line to the screen
 #'
 #' @details
 #'
@@ -31,7 +35,8 @@
 
 chrome_pdf <- function(
   html_path, pdf_path = NULL,
-  temp_dir = tempfile(), browser_bin = NULL
+  temp_dir = tempfile(), browser_bin = NULL,
+  timeout = 10, echo_cmd = TRUE
   ) {
   # Set up Chrome path, per rstudio/pagedown::chrome_print()
   if (missing(browser_bin)) {
@@ -87,13 +92,22 @@ chrome_pdf <- function(
   args <- c(args, sprintf("--print-to-pdf=%s", pdf_path))
   args <- c(args, html_path)
 
+  if (echo_cmd) {
+    message(paste("Running Chrome with a timeout of", timeout, "seconds"))
+  }
   processx::run(
     command = browser_bin,
     args = args,
     error_on_status = FALSE,
-    echo_cmd = FALSE,
-    echo = FALSE
+    echo_cmd = echo_cmd,
+    echo = FALSE,
+    timeout = timeout
   ) -> res
+
+  # TODO:
+  # SAVE res, CHECK res$status/timeout and probably raise warning from .$stderr
+  # ALSO consider passing the stderr_line_callback
+  # See also https://processx.r-lib.org/#callbacks-for-io
 
   invisible(pdf_path)
 }

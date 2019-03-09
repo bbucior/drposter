@@ -5,7 +5,7 @@
 \title{Convert HTML to PDF using Chrome}
 \usage{
 chrome_pdf(html_path, pdf_path = NULL, temp_dir = tempfile(),
-  browser_bin = NULL)
+  browser_bin = NULL, timeout = 10, echo_cmd = TRUE)
 }
 \arguments{
 \item{html_path}{.htm/.html document to export}
@@ -19,6 +19,12 @@ the user's home (e.g. ~/temp_drposter) may work better}
 
 \item{browser_bin}{Path to run Google Chrome.  If unspecified, drposter will
 automatically search common installation paths for your current OS.}
+
+\item{timeout}{Number of seconds before cancelling document generation.
+Use a larger value if the document needs longer to build for some reason.
+Inspired by the flag from rstudio/pagedown:chrome.R.}
+
+\item{echo_cmd}{Whether to print the Chrome command line to the screen}
 }
 \description{
 Calls headless Chrome to export an HTML document to a PDF poster automatically
