@@ -92,6 +92,18 @@ chrome_pdf <- function(
   args <- c(args, sprintf("--print-to-pdf=%s", pdf_path))
   args <- c(args, html_path)
 
+  # Define a callback function to detect errors in format conversion, e.g. FILE_ERROR_IN_USE
+  # For more information, see https://processx.r-lib.org/#callbacks-for-io
+  error_detection <- function(line, proc) {
+    if (grepl(":ERROR:headless_shell.cc", line, fixed=TRUE)) {
+      proc$kill()
+      #stop(line)  # Let's do this after processx::run, instead.
+      # I was intermittently encountering R crashes.  My best guess was a timing issue/race between the end
+      # of the callback function and the parent chrome_pdf function.  There haven't been any crashes since
+      # I consolidated `stop` to run at the end of chrome_pdf, so hopefully this change fixes the crashing.
+    }
+  }
+
   if (echo_cmd) {
     message(paste("Running Chrome with a timeout of", timeout, "seconds"))
   }
@@ -101,13 +113,13 @@ chrome_pdf <- function(
     error_on_status = FALSE,
     echo_cmd = echo_cmd,
     echo = FALSE,
-    timeout = timeout
+    timeout = timeout,
+    stderr_line_callback = error_detection  # the callback might not run immediately, but it's soon enough
   ) -> res
 
-  # TODO:
-  # SAVE res, CHECK res$status/timeout and probably raise warning from .$stderr
-  # ALSO consider passing the stderr_line_callback
-  # See also https://processx.r-lib.org/#callbacks-for-io
+  if (res$status != 0 | res$timeout) {
+    stop(paste0("Crash or timeout from Chrome\n", res$stderr))
+  }
 
   invisible(pdf_path)
 }
