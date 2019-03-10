@@ -5,6 +5,7 @@ output:
   drposter::drposter_poster:
     fill_page: FALSE
     self_contained: FALSE
+    export_pdf: TRUE
 csl: american-chemical-society.csl
 references:
 - id: revealjs
@@ -104,8 +105,9 @@ are probably still some that are untested.
 
 ## Licensing
 
-### 3rd party
-* Package inspired by reveal.js presentation framework[@revealjs] and its R package[@rstudio-reveal]
+### 3rd party credits
+* Inspired by the reveal.js presentation framework[@revealjs] and its R package[@rstudio-reveal]
+* Short code snippets from `pagedown`, `decapitated`, `rmarkdown`, and `xfun`
 * Fonts under their respective licenses
 * Logo: thanks to Openclipart for the CC0 [graduation cap image](https://openclipart.org/detail/244447/minimliast-graduation-hat), [hexSticker](https://github.com/GuangchuangYu/hexSticker) for sticker generation, and [bcbioSmallRna](https://github.com/lpantano/bcbioSmallRna/blob/master/inst/sticker/sticker.R) for a helpful sticker example
 * See [CitationStyles.org](https://citationstyles.org/) and the CSL project[@csl-github] for more info about citation options (CC BY SA 3.0)
