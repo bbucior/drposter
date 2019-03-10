@@ -30,9 +30,6 @@
 #' \url{https://askubuntu.com/questions/35392/how-to-launch-a-new-instance-of-google-chrome-from-the-command-line}
 #' \url{https://github.com/rstudio/pagedown/blob/master/R/chrome.R}
 #' \url{https://www.rdocumentation.org/packages/decapitated/versions/0.3.0}
-#'
-#' @export
-
 chrome_pdf <- function(
   html_path, pdf_path = NULL,
   temp_dir = tempfile(), browser_bin = NULL,
@@ -139,7 +136,6 @@ chrome_pdf <- function(
 #' Copied from rstudio/pagedown:chrome.R (MIT licensed) with a minor tweak to
 #' remove the dependency on xfun (using yihui/xfun/os.R)
 #' @return A character string.
-#' @export
 find_chrome = function() {
   xfun_is_macos = function() unname(Sys.info()['sysname'] == 'Darwin')
   switch(
