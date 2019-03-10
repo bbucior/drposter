@@ -1,30 +1,22 @@
-.PHONY: publish github css
+.PHONY: publish gh css
 
-RUN_R = export R_LIBS_USER="C:/Users/${USER}/Documents/R/win-library/3.4" && Rscript --vanilla
-#WHICH_CHROME := "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+RUN_R = export R_LIBS_USER="C:/Users/${USER}/Documents/R/win-library/3.5" && Rscript --vanilla
 
 # Automatically compile example poster and other templates
 # A few things need to be set up first:
 # 1. Verify that R can find the path to the user library, e.g. the R_LIBS_USER line above.
 # 2. Installing the drposter library
-# 3. Downloading the appropriate CSL file, e.g. ACS
-# 4. Setting a path to Google Chrome, as $WHICH_CHROME
 
-#publish: github poster.pdf
-publish:
-	echo "Not yet implemented"
-github: ../../README.md ../../drposter.png
+# The default publish target (`make`) will automatically take care of the PDF and Github dependencies
+publish: gh poster.pdf
+
+gh: ../../README.md ../../drposter.png
 
 css:
 	${RUN_R} -e 'devtools::install_local("../../../drposter")'; \
 	${RUN_R} -e 'drposter::drposter_update()'
 
-# Haven't gotten this automated yet.  At least manually converting from HTML to PDF is quick.
-# This crashes without writing the output file.
-#poster.pdf: poster.html
-#	${WHICH_CHROME} --headless --print-to-pdf=$@ $^
-
-poster.html: poster.Rmd css drposter.png
+poster.pdf: poster.Rmd css drposter.png
 	${RUN_R} -e 'rmarkdown::render("$<")'
 
 ../../README.md: poster.Rmd

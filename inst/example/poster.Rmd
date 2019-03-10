@@ -5,6 +5,7 @@ output:
   drposter::drposter_poster:
     fill_page: FALSE
     self_contained: FALSE
+    export_pdf: TRUE
 csl: american-chemical-society.csl
 references:
 - id: revealjs
@@ -74,28 +75,29 @@ output: drposter::drposter_poster
 # {.col-3}
 ## Overall document columns (`<h1>`)
 
-Content is organized using headers as sections.  Level 1 sections
-define the overall layout of subblocks.  Use the `.col-x` class to
-use x columns for subblocks.
+Content is organized using headers as sections.  Level 1
+sections define the overall layout of subblocks.  Use the
+`.col-x` class to use x columns for subblocks.
 
 ## Another left column block
 
-You can place multiple subblocks within the same overall .col-x,
-for example to get a 3-column layout like this example code here.
+You can place multiple subblocks within the same overall
+.col-x, for example to get a 3-column layout like this
+example code here.
 
 # {.col-3}
 ## Individual content blocks (`<h2>`)
 
-Actual content goes within the level 2 blocks, which have two inner
-columns by default, e.g. for figures.
+Actual content goes within the level 2 blocks, which have
+two inner columns by default, e.g. for figures.
 
 ![](path_to_figure.jpg)
 
-Most of the markdown commands seem to work, though there are
-probably still some that are untested.
+Most of the markdown commands seem to work, though there
+are probably still some that are untested.
 
 # {.col-3}
-## Use this div to automatically write your references to a section:
+## Use this div to write your references in a section:
 
 <div id="refs" class="references"></div>
 
@@ -103,8 +105,9 @@ probably still some that are untested.
 
 ## Licensing
 
-### 3rd party
-* Package inspired by reveal.js presentation framework[@revealjs] and its R package[@rstudio-reveal]
+### 3rd party credits
+* Inspired by the reveal.js presentation framework[@revealjs] and its R package[@rstudio-reveal]
+* Short code snippets from `pagedown`, `decapitated`, `rmarkdown`, and `xfun`
 * Fonts under their respective licenses
 * Logo: thanks to Openclipart for the CC0 [graduation cap image](https://openclipart.org/detail/244447/minimliast-graduation-hat), [hexSticker](https://github.com/GuangchuangYu/hexSticker) for sticker generation, and [bcbioSmallRna](https://github.com/lpantano/bcbioSmallRna/blob/master/inst/sticker/sticker.R) for a helpful sticker example
 * See [CitationStyles.org](https://citationstyles.org/) and the CSL project[@csl-github] for more info about citation options (CC BY SA 3.0)
@@ -147,7 +150,7 @@ For more information, please visit the project page at <https://github.com/bbuci
 
 * View and "print as PDF" from Chrome[@firefox-footnote]  <!-- Note: the footnote used to be a bibtex "note," but the default ACS template doesn't include that field -->
 * Be sure to save a PDF (and possibly html with `self_contained: true`) to archive your project at the end, in case there are changes in pandoc, rmarkdown, etc.
-* You can also render the poster in other formats, such as a `github_document` or `revealjs::revealjs_presentation`
+* You can also render the poster in other formats, such as `github_document` or `revealjs::revealjs_presentation`
 
 
 ## Reproducible research

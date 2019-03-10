@@ -8,7 +8,7 @@
   font-style: normal;
   font-weight: 400;
   src: local('Roboto'), local('Roboto-Regular'),
-       url('./External/Roboto-Regular.ttf') format('truetype')
+       url('./External/Roboto-Regular.ttf') format('truetype');
 }
 
 @font-face {
@@ -16,7 +16,7 @@
   font-style: italic;
   font-weight: 400;
   src: local('Roboto Italic'), local('Roboto-Italic'),
-       url('./External/Roboto-Italic.ttf') format('truetype')
+       url('./External/Roboto-Italic.ttf') format('truetype');
 }
 
 @font-face {
@@ -24,7 +24,7 @@
   font-style: normal;
   font-weight: 700;
   src: local('Roboto Bold'), local('Roboto-Bold'),
-       url('./External/Roboto-Bold.ttf') format('truetype')
+       url('./External/Roboto-Bold.ttf') format('truetype');
 }
 
 @font-face {
@@ -32,7 +32,7 @@
   font-style: italic;
   font-weight: 700;
   src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'),
-       url('./External/Roboto-Bold.ttf') format('truetype')
+       url('./External/Roboto-Bold.ttf') format('truetype');
 }
 
 
@@ -42,7 +42,7 @@
   font-style: normal;
   font-weight: 400;
   src: local('Monda Regular'), local('Monda-Regular'),
-       url('./External/Monda-Regular.ttf') format('truetype')
+       url('./External/Monda-Regular.ttf') format('truetype');
 }
 
 @font-face {
@@ -50,6 +50,22 @@
   font-style: normal;
   font-weight: 700;
   src: local('Monda Bold'), local('Monda-Bold'),
-       url('./External/Monda-Bold.ttf') format('truetype')
+       url('./External/Monda-Bold.ttf') format('truetype');
 }
 
+/* Roboto Mono (monospace) */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Mono'), local('RobotoMono-Regular'),
+       url('./External/RobotoMono-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Mono Bold'), local('RobotoMono-Bold'),
+       url('./External/RobotoMono-Bold.ttf') format('truetype');
+}

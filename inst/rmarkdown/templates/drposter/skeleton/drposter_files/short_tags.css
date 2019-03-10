@@ -3,7 +3,6 @@
 a {
 	text-decoration: none;
 	color: inherit;  /* text color instead of blue/purple hyperlinks */
-	font-family: monospace;
 }
 
 a::before {

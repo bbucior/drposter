@@ -61,28 +61,29 @@ for this poster on Github.
     # {.col-3}
     ## Overall document columns (`<h1>`)
     
-    Content is organized using headers as sections.  Level 1 sections
-    define the overall layout of subblocks.  Use the `.col-x` class to
-    use x columns for subblocks.
+    Content is organized using headers as sections.  Level 1
+    sections define the overall layout of subblocks.  Use the
+    `.col-x` class to use x columns for subblocks.
     
     ## Another left column block
     
-    You can place multiple subblocks within the same overall .col-x,
-    for example to get a 3-column layout like this example code here.
+    You can place multiple subblocks within the same overall
+    .col-x, for example to get a 3-column layout like this
+    example code here.
     
     # {.col-3}
     ## Individual content blocks (`<h2>`)
     
-    Actual content goes within the level 2 blocks, which have two inner
-    columns by default, e.g. for figures.
+    Actual content goes within the level 2 blocks, which have
+    two inner columns by default, e.g. for figures.
     
     ![](path_to_figure.jpg)
     
-    Most of the markdown commands seem to work, though there are
-    probably still some that are untested.
+    Most of the markdown commands seem to work, though there
+    are probably still some that are untested.
     
     # {.col-3}
-    ## Use this div to automatically write your references to a section:
+    ## Use this div to write your references in a section:
     
     <div id="refs" class="references"></div>
 
@@ -156,7 +157,7 @@ report issues, pull requests, or general comments on Github.
   - Be sure to save a PDF (and possibly html with `self_contained:
     true`) to archive your project at the end, in case there are changes
     in pandoc, rmarkdown, etc.
-  - You can also render the poster in other formats, such as a
+  - You can also render the poster in other formats, such as
     `github_document` or `revealjs::revealjs_presentation`
 
 ## Reproducible research
