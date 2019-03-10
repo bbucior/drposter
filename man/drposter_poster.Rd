@@ -6,7 +6,8 @@
 \usage{
 drposter_poster(self_contained = FALSE, template = NULL,
   css = "custom.css", pandoc_args = NULL, theme = NULL,
-  fill_page = FALSE, lib_dir = "drposter_files/", ...)
+  fill_page = FALSE, lib_dir = "drposter_files/", export_pdf = TRUE,
+  ...)
 }
 \arguments{
 \item{self_contained}{Whether or not the poster should be packaged into a
@@ -34,6 +35,11 @@ By default this is set to \code{FALSE}, which places content without extra spaci
 for the poster. (or NULL to skip and manually specify them)  By default,
 rmarkdown will copy these files into the drposter_files/ subdirectory for a
 document, allowing easy optional updates to newer versions of the template.}
+
+\item{export_pdf}{Run chrome_pdf to save a PDF poster in addition to the HTML version.
+WARNING: the PDF export post-processing hook is run before the default hook from
+rmarkdown::html_document_base, so the PDF output will NOT include "preserved chunks."
+(cases when you use htmltools::htmlPreserve to avoid Markdown parsing, e.g. a script tag)}
 
 \item{...}{Additional parameters to pass to html_document; otherwise ignored.}
 }

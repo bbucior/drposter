@@ -121,6 +121,10 @@ chrome_pdf <- function(
     stop(paste0("Crash or timeout from Chrome\n", res$stderr))
   }
 
+  # Displaying the PDF path will help RStudio show a PDF preview after knitting
+  if (echo_cmd) {
+    message(paste("Output created:", pdf_path))
+  }
   invisible(pdf_path)
 }
 

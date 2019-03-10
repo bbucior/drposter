@@ -23,6 +23,10 @@
 #'   for the poster. (or NULL to skip and manually specify them)  By default,
 #'   rmarkdown will copy these files into the drposter_files/ subdirectory for a
 #'   document, allowing easy optional updates to newer versions of the template.
+#' @param export_pdf Run chrome_pdf to save a PDF poster in addition to the HTML version.
+#'   WARNING: the PDF export post-processing hook is run before the default hook from
+#'   rmarkdown::html_document_base, so the PDF output will NOT include "preserved chunks."
+#'   (cases when you use htmltools::htmlPreserve to avoid Markdown parsing, e.g. a script tag)
 #' @param ... Additional parameters to pass to html_document; otherwise ignored.
 #'
 #' @return R Markdown output format to pass to \code{\link[rmarkdown]{render}}
@@ -62,6 +66,7 @@ drposter_poster <- function(self_contained = FALSE,
                             theme = NULL,
                             fill_page = FALSE,
                             lib_dir = "drposter_files/",
+                            export_pdf = TRUE,
                             ...) {
   # Generate a new output format using a template modified from pandoc
   # With help from http://rmarkdown.rstudio.com/developer_custom_formats.html
@@ -93,7 +98,7 @@ drposter_poster <- function(self_contained = FALSE,
   }
 
   # The rstudio documentation is quite good: https://rmarkdown.rstudio.com/html_document_format.html
-  rmarkdown::html_document(
+  dr_format <- rmarkdown::html_document(
     template = template_file,
     self_contained = self_contained,
     css = css_includes,
@@ -102,4 +107,28 @@ drposter_poster <- function(self_contained = FALSE,
     theme = NULL,  # themes not supported now but may be added later
     ...
     )
+
+  if (export_pdf) {
+    # See also the source code of rstudio/rmarkdown::render, html_document[_base], output_format
+    # for more details on adding post-processing hooks
+    compile_pdf <- function(metadata, input_file, output_file, clean, verbose) {
+      chrome_pdf(output_file, echo_cmd = verbose)
+      output_file
+      # Return the original .html output file, because the default RMarkdown HTML
+      # post-processing hook runs after the PDF hook. (output_format prepends the PDF hook)
+    }
+    dr_format <- rmarkdown::output_format(
+      # Copy params from the base_format
+      dr_format$knitr,
+      dr_format$pandoc,
+      keep_md = dr_format$keep_md,
+      clean_supporting = dr_format$clean_supporting,
+      # The other flags are NULL by default, thus automatically derived from the base_format
+      base_format = dr_format,
+      # Add a PDF post-processing step to the existing format
+      post_processor = compile_pdf
+    )
+  }
+
+  dr_format
 }
