@@ -118,12 +118,15 @@ drposter_poster <- function(self_contained = FALSE,
       # post-processing hook runs after the PDF hook. (output_format prepends the PDF hook)
     }
     dr_format <- rmarkdown::output_format(
-      # Copy params from the base_format
-      dr_format$knitr,
-      dr_format$pandoc,
+      # rmarkdown::output_format can inherit from a base_format and merge settings
+      # together (such as adding a post_processor step).
+      # Most flags are NULL by default, thus automatically derived from the base_format.
+      # For the others, specify the known values for drposter or use a safe default.
+      rmarkdown::knitr_options(),
+      rmarkdown::pandoc_options(to = "html4"),
       keep_md = dr_format$keep_md,
       clean_supporting = dr_format$clean_supporting,
-      # The other flags are NULL by default, thus automatically derived from the base_format
+      # Inherit args and other settings from the drposter version of html_document above
       base_format = dr_format,
       # Add a PDF post-processing step to the existing format
       post_processor = compile_pdf
